@@ -37,8 +37,10 @@ public static class PowerShellParameterExtensions
         Expression<Func<TCmdlet, IPowerShellCmdletParameter<SwitchParameter>>> selector,
         bool value) where TCmdlet : IPowerShellCmdlet
     {
-        var switchParameter = new SwitchParameter(value);
-        PowerShellParameter<SwitchParameter> parameter = PowerShellParameterFactory.FromValue(switchParameter);
+        if (!value)
+            return cmdlet;
+
+        PowerShellParameter<SwitchParameter> parameter = PowerShellParameterFactory.FromValue(SwitchParameter.Present);
         ExpressionBasedInstanceModifier.Instance.ModifyProperty(cmdlet, selector, parameter);
         return cmdlet;
     }

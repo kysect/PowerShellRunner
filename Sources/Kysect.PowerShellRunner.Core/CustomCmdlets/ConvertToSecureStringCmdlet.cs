@@ -9,7 +9,7 @@ namespace Kysect.PowerShellRunner.Core.CustomCmdlets;
 [SuppressMessage("Naming", "CS8618:Non-nullable variable must contain a non-null value when exiting constructor", Justification = "IPowerShellCmdlet")]
 [SuppressMessage("ReSharper", "UnassignedGetOnlyAutoProperty")]
 #pragma warning disable CS8618
-public class ConvertToSecureStringCmdletWrapper : IPowerShellCmdlet<SecureString>
+public class ConvertToSecureStringCmdlet : IPowerShellCmdlet<SecureString>
 {
     public string CmdletName => "ConvertTo-SecureString";
 

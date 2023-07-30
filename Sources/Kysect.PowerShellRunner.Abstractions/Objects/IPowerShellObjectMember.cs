@@ -3,5 +3,5 @@
 public interface IPowerShellObjectMember
 {
     string Name { get; }
-    object Value { get; }
+    object? Value { get; }
 }

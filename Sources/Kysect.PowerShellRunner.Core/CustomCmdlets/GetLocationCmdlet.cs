@@ -12,7 +12,7 @@ public class GetLocationCmdletWrapperResult
     }
 }
 
-public class GetLocationCmdletWrapper : IPowerShellCmdlet<GetLocationCmdletWrapperResult>
+public class GetLocationCmdlet : IPowerShellCmdlet<GetLocationCmdletWrapperResult>
 {
     public string CmdletName => "Get-Location";
 }

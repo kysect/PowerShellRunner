@@ -14,14 +14,6 @@ internal class PowerShellObject : IPowerShellObject
         _powerShellObject = powerShellObject;
     }
 
-    public IReadOnlyCollection<IPowerShellObjectMember> GetMembers()
-    {
-        return _powerShellObject
-            .Members
-            .Select(m => new PowerShellObjectMember(m))
-            .ToList();
-    }
-
     public IReadOnlyCollection<IPowerShellObjectMember> GetProperties()
     {
         return _powerShellObject
@@ -34,8 +26,6 @@ internal class PowerShellObject : IPowerShellObject
     {
         return _powerShellObject.ToString();
     }
-
-    public object this[string memberName] => _powerShellObject.Properties[memberName].Value;
 
     public override string ToString()
     {

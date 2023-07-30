@@ -8,20 +8,12 @@ public record struct PowerShellQuery(PowerShellVariable? ResultVariable, string 
     {
     }
 
-    public PowerShellQuery WithKey(string argumentKey)
+    public PowerShellQuery WithSwitch(string argumentKey)
     {
         return this with { Query = $"{Query} -{argumentKey}" };
     }
 
-    public PowerShellQuery WithKey(string argumentKey, bool value)
-    {
-        if (value)
-            return this with { Query = $"{Query} -{argumentKey}:$true" };
-
-        return this with { Query = $"{Query} -{argumentKey}:$false" };
-    }
-
-    public PowerShellQuery With<T>(string argumentKey, PowerShellVariable<T> variable)
+    public PowerShellQuery With<T>(string argumentKey, IPowerShellReferenceable<T> variable)
     {
         return this with { Query = $"{Query} -{argumentKey} {variable.AsReference()}" };
     }
@@ -53,7 +45,7 @@ public record struct PowerShellQuery(PowerShellVariable? ResultVariable, string 
 
     public PowerShellQuery WherePropertyEqual(string propertyName, string argumentValue)
     {
-        return this with { Query = $"{Query} Where {propertyName} -eq \"{argumentValue}*\"" };
+        return this with { Query = $"{Query} Where {propertyName} -eq \"{argumentValue}\"" };
     }
 
     public PowerShellQuery ContainsSensitiveDate()

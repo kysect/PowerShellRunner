@@ -18,7 +18,7 @@ public class PowerShellPathChangeContext : IDisposable
         if (!Path.IsPathRooted(newPath))
             throw new ArgumentException("Path should be rooted. Actual: " + newPath);
 
-        GetLocationCmdletWrapperResult getLocationCmdletWrapperResult = accessor.SelectCmdlet(new GetLocationCmdletWrapper()).Execute().Single();
+        GetLocationCmdletWrapperResult getLocationCmdletWrapperResult = accessor.SelectCmdlet(new GetLocationCmdlet()).Execute().Single();
 
         accessor.ExecuteRaw(WellKnownQueryProvider.Instance.ChangeDirectory(newPath));
         return new PowerShellPathChangeContext(accessor, getLocationCmdletWrapperResult.Path);

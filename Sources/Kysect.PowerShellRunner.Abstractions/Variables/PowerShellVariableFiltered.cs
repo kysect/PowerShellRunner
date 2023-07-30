@@ -33,7 +33,7 @@ public class PowerShellVariableFiltered<T>
         return this;
     }
 
-    public IEnumerable<PowerShellVariableWithIndex<T>> GetElements()
+    public IEnumerable<PowerShellVariableWithIndex<T>> EnumerateElements()
     {
         for (int index = 0; index < Source.Values.Count; index++)
         {

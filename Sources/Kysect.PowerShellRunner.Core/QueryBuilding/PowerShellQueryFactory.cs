@@ -27,14 +27,8 @@ public static class PowerShellQueryFactory
             if (propertyInfo.PropertyType == typeof(IPowerShellCmdletParameter<SwitchParameter>))
             {
                 IPowerShellCmdletParameterValue? switchRawValue = GetRawPropertyValue(cmdlet, propertyInfo);
-                if (switchRawValue is null)
-                    continue;
-
-                PowerShellCmdletParameterValue switchValue = switchRawValue.To<PowerShellCmdletParameterValue>();
-                bool isSwitchSet = switchValue.Value.To<SwitchParameter>();
-                query = isSwitchSet
-                    ? query.WithKey(propertyInfo.Name)
-                    : query.WithKey(propertyInfo.Name, false);
+                if (switchRawValue is not null)
+                    query = query.WithSwitch(propertyInfo.Name);
 
                 continue;
             }

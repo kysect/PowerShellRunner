@@ -21,7 +21,7 @@ public class PowerShellVariableWithIndex<T> : IPowerShellReferenceable<T>
 
     public PowerShellCmdletParameterReferenceValue AsReference()
     {
-        return new PowerShellCmdletParameterReferenceValue($"${Source.Name}[{Index}]");
+        return new PowerShellCmdletParameterReferenceValue($"{Source.AsReference()}[{Index}]");
     }
 
     public override string ToString()

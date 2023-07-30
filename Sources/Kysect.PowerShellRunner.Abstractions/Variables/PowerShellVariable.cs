@@ -23,20 +23,25 @@ public class PowerShellVariable<T> : IPowerShellVariable<T>
 
     public PowerShellVariable(string name)
     {
+        Name = ValidateName(name);
+        Values = new List<T>();
+    }
+
+    public PowerShellVariable(string name, IReadOnlyList<T> values)
+    {
+        Name = ValidateName(name);
+        Values = values;
+    }
+
+    private string ValidateName(string name)
+    {
         if (string.IsNullOrEmpty(name))
             throw new ArgumentException("Name is null or empty", nameof(name));
 
         if (!name.StartsWith("$"))
             throw new ArgumentException("PS variable should start with prefix '$'.");
 
-        Name = name;
-        Values = new List<T>();
-    }
-
-    public PowerShellVariable(string name, IReadOnlyList<T> values)
-    {
-        Name = name;
-        Values = values;
+        return name;
     }
 
     public PowerShellCmdletParameterReferenceValue AsReference()
