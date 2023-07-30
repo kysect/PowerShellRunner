@@ -10,18 +10,18 @@ namespace Kysect.PowerShellRunner.FrameworkImplementation;
 public class PowerShellAccessor : IPowerShellAccessor
 {
     private readonly PowerShell _powerShellInstance;
-    private readonly PowerShellQueryBuilder _executionStringBuilder;
+    private readonly PowerShellQueryFormatter _executionStringFormatter;
 
     public PowerShellAccessor(PowerShell powerShellInstance)
     {
         _powerShellInstance = powerShellInstance;
 
-        _executionStringBuilder = new PowerShellQueryBuilder();
+        _executionStringFormatter = new PowerShellQueryFormatter();
     }
 
-    public IPowerShellExecutionResult Execute(PowerShellQueryArguments query)
+    public IPowerShellExecutionResult Execute(PowerShellQuery query)
     {
-        string fullCommand = _executionStringBuilder.Build(query);
+        string fullCommand = _executionStringFormatter.Format(query);
 
         lock (_powerShellInstance)
         {

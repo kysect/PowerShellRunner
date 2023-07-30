@@ -6,5 +6,5 @@ namespace Kysect.PowerShellRunner.Abstractions.Accessors;
 
 public interface IPowerShellAccessor : IDisposable
 {
-    IPowerShellExecutionResult Execute(PowerShellQueryArguments queryArguments);
+    IPowerShellExecutionResult Execute(PowerShellQuery query);
 }
