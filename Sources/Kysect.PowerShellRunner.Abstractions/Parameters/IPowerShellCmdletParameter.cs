@@ -1,4 +1,4 @@
-﻿namespace Kysect.PowerShellRunner.Abstractions.Cmdlets;
+﻿namespace Kysect.PowerShellRunner.Abstractions.Parameters;
 
 public interface IPowerShellCmdletParameter<in T>
 {

@@ -23,6 +23,6 @@ public static class PowerShellAccessorExecutionExtensions
 
     public static IReadOnlyCollection<IPowerShellObject> GetVariableVale(this IPowerShellAccessor accessor, PowerShellVariable variable)
     {
-        return accessor.ExecuteRaw(new PowerShellQuery(variable.AsReference().ParameterName));
+        return accessor.ExecuteRaw(new PowerShellQuery(variable.AsReference().Name));
     }
 }

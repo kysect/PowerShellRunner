@@ -1,7 +1,7 @@
 ﻿using Kysect.CommonLib.Reflection;
 using Kysect.PowerShellRunner.Abstractions.Cmdlets;
+using Kysect.PowerShellRunner.Abstractions.Parameters;
 using Kysect.PowerShellRunner.Abstractions.Variables;
-using Kysect.PowerShellRunner.Core.QueryBuilding;
 using System;
 using System.Linq.Expressions;
 using System.Management.Automation;
@@ -15,8 +15,8 @@ public static class PowerShellParameterExtensions
         Expression<Func<TCmdlet, IPowerShellCmdletParameter<TParameter[]>>> selector,
         TParameter value) where TCmdlet : IPowerShellCmdlet
     {
-        PowerShellParameter<TParameter[]> parameter = PowerShellParameterFactory.FromValueToArray(value);
-        ExpressionBasedInstanceModifier.Instance.ModifyProperty(cmdlet, selector, parameter);
+        PowerShellCmdletParameter<TParameter[]> cmdletParameter = PowerShellCmdletParameterFactory.FromValueToArray(value);
+        ExpressionBasedInstanceModifier.Instance.ModifyProperty(cmdlet, selector, cmdletParameter);
         return cmdlet;
     }
 
@@ -27,8 +27,8 @@ public static class PowerShellParameterExtensions
         where TCmdlet : IPowerShellCmdlet
         where TParameter : notnull
     {
-        PowerShellParameter<TParameter> parameter = PowerShellParameterFactory.FromValue(value);
-        ExpressionBasedInstanceModifier.Instance.ModifyProperty(cmdlet, selector, parameter);
+        PowerShellCmdletParameter<TParameter> cmdletParameter = PowerShellCmdletParameterFactory.FromValue(value);
+        ExpressionBasedInstanceModifier.Instance.ModifyProperty(cmdlet, selector, cmdletParameter);
         return cmdlet;
     }
 
@@ -40,8 +40,8 @@ public static class PowerShellParameterExtensions
         if (!value)
             return cmdlet;
 
-        PowerShellParameter<SwitchParameter> parameter = PowerShellParameterFactory.FromValue(SwitchParameter.Present);
-        ExpressionBasedInstanceModifier.Instance.ModifyProperty(cmdlet, selector, parameter);
+        PowerShellCmdletParameter<SwitchParameter> cmdletParameter = PowerShellCmdletParameterFactory.FromValue(SwitchParameter.Present);
+        ExpressionBasedInstanceModifier.Instance.ModifyProperty(cmdlet, selector, cmdletParameter);
         return cmdlet;
     }
 
@@ -52,8 +52,8 @@ public static class PowerShellParameterExtensions
         where TCmdlet : IPowerShellCmdlet
         where TParameter : notnull
     {
-        PowerShellParameter<TParameter> parameter = PowerShellParameterFactory.FromVariable(variableWithIndex);
-        ExpressionBasedInstanceModifier.Instance.ModifyProperty(cmdlet, selector, parameter);
+        PowerShellCmdletParameter<TParameter> cmdletParameter = PowerShellCmdletParameterFactory.FromVariable(variableWithIndex);
+        ExpressionBasedInstanceModifier.Instance.ModifyProperty(cmdlet, selector, cmdletParameter);
         return cmdlet;
     }
 
@@ -62,8 +62,8 @@ public static class PowerShellParameterExtensions
         Expression<Func<TCmdlet, IPowerShellCmdletParameter<TParameter[]>>> selector,
         IPowerShellReferenceable<TParameter> variableWithIndex) where TCmdlet : IPowerShellCmdlet
     {
-        PowerShellParameter<TParameter[]> parameter = PowerShellParameterFactory.FromVariableToArray(variableWithIndex);
-        ExpressionBasedInstanceModifier.Instance.ModifyProperty(cmdlet, selector, parameter);
+        PowerShellCmdletParameter<TParameter[]> cmdletParameter = PowerShellCmdletParameterFactory.FromVariableToArray(variableWithIndex);
+        ExpressionBasedInstanceModifier.Instance.ModifyProperty(cmdlet, selector, cmdletParameter);
         return cmdlet;
     }
 
@@ -72,8 +72,8 @@ public static class PowerShellParameterExtensions
         Expression<Func<TCmdlet, IPowerShellCmdletParameter<TParameter[]>>> selector,
         params IPowerShellReferenceable<TParameter>[] variableWithIndex) where TCmdlet : IPowerShellCmdlet
     {
-        PowerShellParameter<TParameter[]> parameter = PowerShellParameterFactory.FromVariableToArray(variableWithIndex);
-        ExpressionBasedInstanceModifier.Instance.ModifyProperty(cmdlet, selector, parameter);
+        PowerShellCmdletParameter<TParameter[]> cmdletParameter = PowerShellCmdletParameterFactory.FromVariableToArray(variableWithIndex);
+        ExpressionBasedInstanceModifier.Instance.ModifyProperty(cmdlet, selector, cmdletParameter);
         return cmdlet;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Kysect.PowerShellRunner.Abstractions.Cmdlets;
 
 namespace Kysect.PowerShellRunner.Abstractions.Variables;
 
@@ -19,9 +18,9 @@ public class PowerShellVariableWithIndex<T> : IPowerShellReferenceable<T>
         return Source.Values.ElementAt(Index);
     }
 
-    public PowerShellCmdletParameterReferenceValue AsReference()
+    public PowerShellReference AsReference()
     {
-        return new PowerShellCmdletParameterReferenceValue($"{Source.AsReference()}[{Index}]");
+        return new PowerShellReference($"{Source.AsReference()}[{Index}]");
     }
 
     public override string ToString()

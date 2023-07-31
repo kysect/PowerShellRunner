@@ -1,7 +1,8 @@
-﻿using Kysect.CommonLib.BaseTypes.Extensions;
-using Kysect.CommonLib.Exceptions;
+﻿using Kysect.CommonLib.Exceptions;
 using Kysect.PowerShellRunner.Abstractions.Cmdlets;
+using Kysect.PowerShellRunner.Abstractions.Parameters;
 using Kysect.PowerShellRunner.Abstractions.Queries;
+using Kysect.PowerShellRunner.Abstractions.Variables;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,7 +54,7 @@ public static class PowerShellQueryFactory
 
     private static IPowerShellCmdletParameterValue? GetRawPropertyValue(IPowerShellCmdlet cmdlet, PropertyInfo propertyInfo)
     {
-        const string prepareValueMethodName = nameof(PowerShellParameter<object>.GetValue);
+        const string prepareValueMethodName = nameof(PowerShellCmdletParameter<object>.GetValue);
         Type parameterType = propertyInfo.PropertyType;
 
         object propertyValue = propertyInfo.GetValue(cmdlet);
@@ -73,7 +74,7 @@ public static class PowerShellQueryFactory
 
         return value switch
         {
-            PowerShellCmdletParameterReferenceValue powerShellParameterReferenceValue => powerShellParameterReferenceValue.ParameterName,
+            PowerShellReference powerShellParameterReferenceValue => powerShellParameterReferenceValue.Name,
             PowerShellCmdletParameterValue powerShellParameterValue => PrepareValueInternal(powerShellParameterValue.Value),
             null => null,
             _ => throw SwitchDefaultException.OnUnexpectedType(nameof(value), value),
