@@ -56,4 +56,17 @@ public class PowerShellVariableTests
             .Should().HaveCount(2)
             .And.Equal("$variable_name[0]", "$variable_name[2]");
     }
+
+    [Test]
+    public void ReferenceCollectionCreate_ForManyVariables_ReturnExpectedResult()
+    {
+        var variable = new PowerShellVariable<int>("$variable_name", new[] { 1, 2, 3 })
+            .EnumerateElements()
+            .ToList();
+
+        var referenceCollection = PowerShellReferenceCollection.Create(variable);
+
+        referenceCollection.Name
+            .Should().Be("$variable_name[0],$variable_name[1],$variable_name[2]");
+    }
 }

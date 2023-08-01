@@ -5,14 +5,19 @@ using Kysect.PowerShellRunner.Abstractions.Queries;
 
 namespace Kysect.PowerShellRunner.Tests.Mocks;
 
-public class TestPowerShellAccessor : IPowerShellAccessor
+public class FakePowerShellAccessor : IPowerShellAccessor
 {
     private IPowerShellExecutionResult? _result;
 
     public void SetSuccessResult<T>(T value) where T : notnull
     {
         var powerShellObject = new FakePowerShellObject<T>(value);
-        _result = new SuccessPowerShellExecutionResult(new[] { powerShellObject });
+        _result = new PowerShellSuccessExecutionResult(new[] { powerShellObject });
+    }
+
+    public void SetFailedResult(string error)
+    {
+        _result = new PowerShellFailedExecutionResult(new[] { error }, Array.Empty<string>());
     }
 
     public IPowerShellExecutionResult Execute(PowerShellQuery query)

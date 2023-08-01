@@ -38,22 +38,22 @@ public class PowerShellAccessor : IPowerShellAccessor
         }
     }
 
-    private SuccessPowerShellExecutionResult CreateSuccessResult(Collection<PSObject> result)
+    private PowerShellSuccessExecutionResult CreateSuccessResult(Collection<PSObject> result)
     {
         var resultItems = result
             .Where(p => p is not null)
             .Select(p => new PowerShellObject(p))
             .ToList();
 
-        return new SuccessPowerShellExecutionResult(resultItems);
+        return new PowerShellSuccessExecutionResult(resultItems);
     }
 
-    private FailedPowerShellExecutionResult CreateFailedResult(Collection<PSObject> result)
+    private PowerShellFailedExecutionResult CreateFailedResult(Collection<PSObject> result)
     {
         var errors = _powerShellInstance.Streams.Error.ToList();
         var errorMessages = errors.Select(e => e.ToString()).ToList();
 
-        var failedPowerShellExecutionResult = new FailedPowerShellExecutionResult(errorMessages, result
+        var failedPowerShellExecutionResult = new PowerShellFailedExecutionResult(errorMessages, result
             .Where(r => r is not null)
             .Select(r => r.ToString())
             .ToList());

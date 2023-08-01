@@ -39,7 +39,7 @@ public class PowerShellAccessorLoggingDecorator : IPowerShellAccessor
         IPowerShellExecutionResult result = _innerImplementation.Execute(query);
         switch (result)
         {
-            case FailedPowerShellExecutionResult failedPowerShellExecutionResult:
+            case PowerShellFailedExecutionResult failedPowerShellExecutionResult:
                 _logger.LogError("PS command executed failed.");
                 if (failedPowerShellExecutionResult.Errors.Any())
                 {
@@ -57,7 +57,7 @@ public class PowerShellAccessorLoggingDecorator : IPowerShellAccessor
 
                 break;
 
-            case SuccessPowerShellExecutionResult successPowerShellExecutionResult:
+            case PowerShellSuccessExecutionResult successPowerShellExecutionResult:
                 _logger.LogDebug("PS command executed successfully.");
                 foreach (IPowerShellObject powerShellObject in successPowerShellExecutionResult.Output)
                     _logger.LogPowerShellObject(powerShellObject);

@@ -12,8 +12,8 @@ public static class PowerShellExecutionResultExtensions
     {
         return result switch
         {
-            SuccessPowerShellExecutionResult successPowerShellExecutionResult => successPowerShellExecutionResult.Output,
-            FailedPowerShellExecutionResult failedPowerShellExecutionResult => throw new PowerShellExecutionException(failedPowerShellExecutionResult.Errors),
+            PowerShellSuccessExecutionResult successPowerShellExecutionResult => successPowerShellExecutionResult.Output,
+            PowerShellFailedExecutionResult failedPowerShellExecutionResult => throw new PowerShellExecutionException(failedPowerShellExecutionResult.Errors),
             _ => throw new ArgumentOutOfRangeException(nameof(result))
         };
     }

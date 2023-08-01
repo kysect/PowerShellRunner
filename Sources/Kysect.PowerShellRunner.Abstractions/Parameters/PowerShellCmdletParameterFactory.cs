@@ -9,19 +9,19 @@ public class PowerShellCmdletParameterFactory
         return new PowerShellCmdletParameter<T>(new PowerShellCmdletParameterValue(value));
     }
 
-    public static PowerShellCmdletParameter<T> FromVariable<T>(IPowerShellReferenceable<T> variableWithIndex) where T : notnull
+    public static PowerShellCmdletParameter<T> FromVariable<T>(IPowerShellReferenceable<T> reference) where T : notnull
     {
-        return new PowerShellCmdletParameter<T>(variableWithIndex.AsReference());
+        return new PowerShellCmdletParameter<T>(reference.AsReference());
     }
 
-    public static PowerShellCmdletParameter<T[]> FromVariableToArray<T>(IPowerShellReferenceable<T> variableWithIndex)
+    public static PowerShellCmdletParameter<T[]> FromVariableToArray<T>(IPowerShellReferenceable<T> reference)
     {
-        return new PowerShellCmdletParameter<T[]>(variableWithIndex.AsReference());
+        return new PowerShellCmdletParameter<T[]>(reference.AsReference());
     }
 
-    public static PowerShellCmdletParameter<T[]> FromVariableToArray<T>(IPowerShellReferenceable<T>[] references)
+    public static PowerShellCmdletParameter<T[]> FromVariableToArray<T>(IPowerShellReferenceable<T>[] reference)
     {
-        return new PowerShellCmdletParameter<T[]>(PowerShellReferenceCollection.Create(references));
+        return new PowerShellCmdletParameter<T[]>(PowerShellReferenceCollection.Create(reference));
     }
 
     public static PowerShellCmdletParameter<T[]> FromValueToArray<T>(T value)

@@ -1,4 +1,6 @@
 ﻿using FluentAssertions;
+using Kysect.PowerShellRunner.Abstractions.Accessors.Results;
+using Kysect.PowerShellRunner.Abstractions.Queries;
 using Kysect.PowerShellRunner.Core.CustomCmdlets;
 using Kysect.PowerShellRunner.Core.Extensions;
 using Kysect.PowerShellRunner.Tests.Mocks;
@@ -12,7 +14,7 @@ public class PowerShellAccessorTests
     public void Execute_GetLocationCmdlet_ReturnExpectedModel()
     {
         string expectedResult = @"C:\\Folder";
-        var testPowerShellAccessor = new TestPowerShellAccessor();
+        var testPowerShellAccessor = new FakePowerShellAccessor();
         testPowerShellAccessor.SetSuccessResult(new GetLocationCmdletWrapperResult(expectedResult));
 
         IReadOnlyCollection<GetLocationCmdletWrapperResult> results = testPowerShellAccessor
@@ -22,5 +24,17 @@ public class PowerShellAccessorTests
         results
             .Should().HaveCount(1)
             .And.Subject.ElementAt(0).Path.Should().Be(expectedResult);
+    }
+
+    [Test]
+    public void Execute_WithError_ShouldThrowException()
+    {
+        var testPowerShellAccessor = new FakePowerShellAccessor();
+
+        testPowerShellAccessor.SetFailedResult("Some error");
+
+        IPowerShellExecutionResult powerShellExecutionResult = testPowerShellAccessor.Execute(new PowerShellQuery());
+
+        powerShellExecutionResult.Should().BeOfType<PowerShellFailedExecutionResult>();
     }
 }

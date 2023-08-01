@@ -3,11 +3,11 @@ using Kysect.PowerShellRunner.Abstractions.Objects;
 
 namespace Kysect.PowerShellRunner.Abstractions.Accessors.Results;
 
-public class SuccessPowerShellExecutionResult : IPowerShellExecutionResult
+public class PowerShellSuccessExecutionResult : IPowerShellExecutionResult
 {
     public IReadOnlyCollection<IPowerShellObject> Output { get; }
 
-    public SuccessPowerShellExecutionResult(IReadOnlyCollection<IPowerShellObject> output)
+    public PowerShellSuccessExecutionResult(IReadOnlyCollection<IPowerShellObject> output)
     {
         Output = output;
     }
