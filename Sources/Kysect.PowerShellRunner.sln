@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kysect.PowerShellRunner.Abstractions", "Kysect.PowerShellRunner.Abstractions\Kysect.PowerShellRunner.Abstractions.csproj", "{AA2BC161-1EF8-4F43-83CB-D3D3D78D3909}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kysect.PowerShellRunner.Abstractions", "Kysect.PowerShellRunner.Abstractions\Kysect.PowerShellRunner.Abstractions.csproj", "{AA2BC161-1EF8-4F43-83CB-D3D3D78D3909}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kysect.PowerShellRunner.Tests", "Kysect.PowerShellRunner.Tests\Kysect.PowerShellRunner.Tests.csproj", "{707E300A-3802-44F4-B64E-56A7DC2E8557}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kysect.PowerShellRunner.Tests", "Kysect.PowerShellRunner.Tests\Kysect.PowerShellRunner.Tests.csproj", "{707E300A-3802-44F4-B64E-56A7DC2E8557}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kysect.PowerShellRunner.FrameworkImplementation", "Kysect.PowerShellRunner.FrameworkImplementation\Kysect.PowerShellRunner.FrameworkImplementation.csproj", "{94A86796-C547-4EA8-BCCB-B9ABDE38EC65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kysect.PowerShellRunner.FrameworkImplementation", "Kysect.PowerShellRunner.FrameworkImplementation\Kysect.PowerShellRunner.FrameworkImplementation.csproj", "{94A86796-C547-4EA8-BCCB-B9ABDE38EC65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kysect.PowerShellRunner.Core", "Kysect.PowerShellRunner.Core\Kysect.PowerShellRunner.Core.csproj", "{C83F1965-69EF-47E6-AE95-807468393116}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kysect.PowerShellRunner.Core", "Kysect.PowerShellRunner.Core\Kysect.PowerShellRunner.Core.csproj", "{C83F1965-69EF-47E6-AE95-807468393116}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kysect.PowerShellRunner.CodeGeneration", "Kysect.PowerShellRunner.CodeGeneration\Kysect.PowerShellRunner.CodeGeneration.csproj", "{427C6CA2-F555-40E5-9E8D-C2EAE16A07D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C83F1965-69EF-47E6-AE95-807468393116}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C83F1965-69EF-47E6-AE95-807468393116}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C83F1965-69EF-47E6-AE95-807468393116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{427C6CA2-F555-40E5-9E8D-C2EAE16A07D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{427C6CA2-F555-40E5-9E8D-C2EAE16A07D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{427C6CA2-F555-40E5-9E8D-C2EAE16A07D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{427C6CA2-F555-40E5-9E8D-C2EAE16A07D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
