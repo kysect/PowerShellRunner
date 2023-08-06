@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Kysect.PowerShellRunner.CodeGeneration.Parsing.Enums;
-using Microsoft.CodeAnalysis;
+using Kysect.PowerShellRunner.Tests.CodeGeneration.Tools;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
@@ -23,8 +23,8 @@ public class EnumDeclarationSyntaxParserTests
             }
             """;
 
-        EnumDeclarationSyntax enumDeclarationSyntax = ExtractEnum(input);
-        CSharpCompilation sharpCompilation = CreateCompilation(enumDeclarationSyntax);
+        EnumDeclarationSyntax enumDeclarationSyntax = RoslynParsingExtensions.ExtractSyntax<EnumDeclarationSyntax>(input);
+        CSharpCompilation sharpCompilation = RoslynParsingExtensions.CreateCompilation(enumDeclarationSyntax);
         var parser = new EnumDeclarationSyntaxParser(_logger, sharpCompilation);
 
         EnumDeclarationSyntaxParseResult result = parser.Parse(enumDeclarationSyntax);
@@ -47,8 +47,8 @@ public class EnumDeclarationSyntaxParserTests
             }
             """;
 
-        EnumDeclarationSyntax enumDeclarationSyntax = ExtractEnum(input);
-        CSharpCompilation sharpCompilation = CreateCompilation(enumDeclarationSyntax);
+        EnumDeclarationSyntax enumDeclarationSyntax = RoslynParsingExtensions.ExtractSyntax<EnumDeclarationSyntax>(input);
+        CSharpCompilation sharpCompilation = RoslynParsingExtensions.CreateCompilation(enumDeclarationSyntax);
         var parser = new EnumDeclarationSyntaxParser(_logger, sharpCompilation);
 
         EnumDeclarationSyntaxParseResult result = parser.Parse(enumDeclarationSyntax);
@@ -71,8 +71,8 @@ public class EnumDeclarationSyntaxParserTests
             }
             """;
 
-        EnumDeclarationSyntax enumDeclarationSyntax = ExtractEnum(input);
-        CSharpCompilation sharpCompilation = CreateCompilation(enumDeclarationSyntax);
+        EnumDeclarationSyntax enumDeclarationSyntax = RoslynParsingExtensions.ExtractSyntax<EnumDeclarationSyntax>(input);
+        CSharpCompilation sharpCompilation = RoslynParsingExtensions.CreateCompilation(enumDeclarationSyntax);
         var parser = new EnumDeclarationSyntaxParser(_logger, sharpCompilation);
 
         EnumDeclarationSyntaxParseResult result = parser.Parse(enumDeclarationSyntax);
@@ -98,8 +98,8 @@ public class EnumDeclarationSyntaxParserTests
             }
             """;
 
-        EnumDeclarationSyntax enumDeclarationSyntax = ExtractEnum(input);
-        CSharpCompilation sharpCompilation = CreateCompilation(enumDeclarationSyntax);
+        EnumDeclarationSyntax enumDeclarationSyntax = RoslynParsingExtensions.ExtractSyntax<EnumDeclarationSyntax>(input);
+        CSharpCompilation sharpCompilation = RoslynParsingExtensions.CreateCompilation(enumDeclarationSyntax);
         var parser = new EnumDeclarationSyntaxParser(_logger, sharpCompilation);
 
         EnumDeclarationSyntaxParseResult result = parser.Parse(enumDeclarationSyntax);
@@ -110,22 +110,5 @@ public class EnumDeclarationSyntaxParserTests
         result.Members
             .Should().HaveCount(2)
             .And.Contain(new EnumMemberDeclarationSyntaxParseResult("Value2", 4));
-    }
-
-    private EnumDeclarationSyntax ExtractEnum(string input)
-    {
-        return CSharpSyntaxTree
-            .ParseText(input)
-            .GetRoot()
-            .DescendantNodes()
-            .OfType<EnumDeclarationSyntax>()
-            .Single();
-    }
-
-    private CSharpCompilation CreateCompilation(SyntaxNode syntaxNode)
-    {
-        return CSharpCompilation
-            .Create("TestCompilation")
-            .AddSyntaxTrees(syntaxNode.SyntaxTree);
     }
 }
