@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Kysect.RoslynUtils.Parsing.Enums;
+namespace Kysect.PowerShellRunner.CodeGeneration.Parsing.Enums;
 
 // TODO: replace int with type from enum. Or use Int64
 public class EnumMemberDeclarationSyntaxParseResult : IEquatable<EnumMemberDeclarationSyntaxParseResult>

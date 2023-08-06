@@ -1,14 +1,13 @@
 ﻿using FluentAssertions;
-using Kysect.RoslynUtils.Parsing;
-using Kysect.RoslynUtils.Parsing.Enums;
-using Microsoft.CodeAnalysis.CSharp;
+using Kysect.PowerShellRunner.CodeGeneration.Parsing.Enums;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using NUnit.Framework;
 
-namespace Kysect.RoslynUtils.Tests;
+namespace Kysect.PowerShellRunner.Tests.CodeGeneration;
 
 public class EnumDeclarationSyntaxParserTests
 {

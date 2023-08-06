@@ -1,12 +1,12 @@
 ﻿using Kysect.CommonLib.BaseTypes.Extensions;
-using Kysect.RoslynUtils.Common;
+using Kysect.PowerShellRunner.CodeGeneration.Common;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 
-namespace Kysect.RoslynUtils.Parsing.Enums;
+namespace Kysect.PowerShellRunner.CodeGeneration.Parsing.Enums;
 
 public class EnumDeclarationSyntaxParser
 {

@@ -4,7 +4,7 @@ using Kysect.PowerShellRunner.Abstractions.Accessors;
 using Kysect.PowerShellRunner.Abstractions.Accessors.Results;
 using Kysect.PowerShellRunner.Abstractions.Objects;
 using Kysect.PowerShellRunner.Abstractions.Queries;
-using Kysect.PowerShellRunner.Abstractions.Tools;
+using Kysect.PowerShellRunner.Core.Tools;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 

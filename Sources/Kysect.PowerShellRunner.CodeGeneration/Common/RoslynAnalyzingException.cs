@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Kysect.RoslynUtils.Common;
+namespace Kysect.PowerShellRunner.CodeGeneration.Common;
 
 public class RoslynAnalyzingException : Exception
 {
