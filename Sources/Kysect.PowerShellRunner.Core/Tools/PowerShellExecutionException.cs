@@ -18,7 +18,7 @@ public class PowerShellExecutionException : PowerShellIntegrationException
         Errors = errors;
     }
 
-    public static string CreateErrorString(IReadOnlyCollection<string> errors)
+    private static string CreateErrorString(IReadOnlyCollection<string> errors)
     {
         if (errors.Count == 0)
         {
@@ -26,5 +26,15 @@ public class PowerShellExecutionException : PowerShellIntegrationException
         }
 
         return "Execution finished with errors: " + errors.ToSingleString();
+    }
+
+    public PowerShellExecutionException(string message) : base(message)
+    {
+        Errors = new[] { message };
+    }
+
+    public PowerShellExecutionException(string message, Exception innerException) : base(message, innerException)
+    {
+        Errors = new[] { message };
     }
 }

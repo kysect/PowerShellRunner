@@ -12,4 +12,8 @@ public class PowerShellIntegrationException : Exception
     {
 
     }
+
+    public PowerShellIntegrationException()
+    {
+    }
 }

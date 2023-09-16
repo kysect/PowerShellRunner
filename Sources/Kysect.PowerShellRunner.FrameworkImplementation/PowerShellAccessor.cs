@@ -61,8 +61,13 @@ public class PowerShellAccessor : IPowerShellAccessor
         return failedPowerShellExecutionResult;
     }
 
-    public void Dispose()
+    protected virtual void Dispose(bool disposing)
     {
         _powerShellInstance.Dispose();
+    }
+
+    public void Dispose()
+    {
+        Dispose(disposing: true);
     }
 }

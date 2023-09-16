@@ -21,6 +21,8 @@ public class EnumDeclarationSyntaxParser
 
     public EnumDeclarationSyntaxParseResult Parse(EnumDeclarationSyntax syntax)
     {
+        syntax.ThrowIfNull();
+
         SemanticModel semanticModel = _compilation.GetSemanticModel(syntax.SyntaxTree);
 
         // TODO: support case when enum is member of other class
@@ -40,7 +42,7 @@ public class EnumDeclarationSyntaxParser
         if (enumMemberDeclarationSyntax.EqualsValue is null)
             return new EnumMemberDeclarationSyntaxParseResult(enumMemberDeclarationSyntax.Identifier.Text, null);
 
-        Optional<object> constantValue = semanticModel.GetConstantValue(enumMemberDeclarationSyntax.EqualsValue.Value);
+        Optional<object?> constantValue = semanticModel.GetConstantValue(enumMemberDeclarationSyntax.EqualsValue.Value);
         if (!constantValue.HasValue)
             throw new RoslynAnalyzingException($"Cannot parse enum value for {enumMemberDeclarationSyntax.EqualsValue.ToFullString()}");
 

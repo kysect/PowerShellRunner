@@ -1,4 +1,5 @@
-﻿using Kysect.PowerShellRunner.Abstractions.Variables;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using Kysect.PowerShellRunner.Abstractions.Variables;
 
 namespace Kysect.PowerShellRunner.Core.Extensions;
 
@@ -6,6 +7,8 @@ public static class PowerShellVariableExtensions
 {
     public static PowerShellVariable<TOut> UnsafeCast<TIn, TOut>(this PowerShellVariable<TIn> variable)
     {
+        variable.ThrowIfNull();
+
         return new PowerShellVariable<TOut>(variable.Name);
     }
 }

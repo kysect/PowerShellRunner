@@ -14,7 +14,7 @@ public class PowerShellAccessorTests
     public void Execute_GetLocationCmdlet_ReturnExpectedModel()
     {
         string expectedResult = @"C:\\Folder";
-        var testPowerShellAccessor = new FakePowerShellAccessor();
+        using var testPowerShellAccessor = new FakePowerShellAccessor();
         testPowerShellAccessor.SetSuccessResult(new GetLocationCmdletWrapperResult(expectedResult));
 
         IReadOnlyCollection<GetLocationCmdletWrapperResult> results = testPowerShellAccessor
@@ -29,7 +29,7 @@ public class PowerShellAccessorTests
     [Test]
     public void Execute_WithError_ShouldThrowException()
     {
-        var testPowerShellAccessor = new FakePowerShellAccessor();
+        using var testPowerShellAccessor = new FakePowerShellAccessor();
 
         testPowerShellAccessor.SetFailedResult("Some error");
 

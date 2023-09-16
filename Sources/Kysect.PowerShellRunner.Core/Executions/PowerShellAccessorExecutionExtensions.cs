@@ -1,4 +1,5 @@
-﻿using Kysect.PowerShellRunner.Abstractions.Accessors;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using Kysect.PowerShellRunner.Abstractions.Accessors;
 using Kysect.PowerShellRunner.Abstractions.Objects;
 using Kysect.PowerShellRunner.Abstractions.Queries;
 using Kysect.PowerShellRunner.Abstractions.Variables;
@@ -13,16 +14,23 @@ public static class PowerShellAccessorExecutionExtensions
     /// </summary>
     public static IReadOnlyCollection<IPowerShellObject> ExecuteAndGet(this IPowerShellAccessor accessor, PowerShellQuery query)
     {
+        accessor.ThrowIfNull();
+
         return accessor.Execute(query).EnsureNoErrors();
     }
 
     public static IReadOnlyCollection<IPowerShellObject> ExecuteRaw(this IPowerShellAccessor accessor, PowerShellQuery query)
     {
+        accessor.ThrowIfNull();
+
         return accessor.ExecuteAndGet(query);
     }
 
     public static IReadOnlyCollection<IPowerShellObject> GetVariableVale(this IPowerShellAccessor accessor, PowerShellVariable variable)
     {
+        accessor.ThrowIfNull();
+        variable.ThrowIfNull();
+
         return accessor.ExecuteRaw(new PowerShellQuery(variable.AsReference().Name));
     }
 }

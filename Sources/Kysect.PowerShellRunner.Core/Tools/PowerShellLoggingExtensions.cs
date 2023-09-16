@@ -1,4 +1,5 @@
-﻿using Kysect.CommonLib.Logging;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using Kysect.CommonLib.Logging;
 using Kysect.PowerShellRunner.Abstractions.Objects;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ public static class PowerShellLoggingExtensions
 {
     public static void LogPowerShellObject(this ILogger logger, IReadOnlyCollection<IPowerShellObject> objects)
     {
+        objects.ThrowIfNull();
+
         foreach (IPowerShellObject psObject in objects)
             logger.LogPowerShellObject(psObject);
     }

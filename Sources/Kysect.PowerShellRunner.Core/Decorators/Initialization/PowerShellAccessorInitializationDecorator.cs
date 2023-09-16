@@ -1,4 +1,5 @@
-﻿using Kysect.PowerShellRunner.Abstractions.Accessors;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using Kysect.PowerShellRunner.Abstractions.Accessors;
 using Kysect.PowerShellRunner.Abstractions.Accessors.Results;
 using Kysect.PowerShellRunner.Abstractions.Queries;
 using System;
@@ -21,13 +22,21 @@ public class PowerShellAccessorInitializationDecorator : IPowerShellAccessor
 
     public static IPowerShellAccessor Initialize(IPowerShellAccessor accessor, IPowerShellAccessorInitializer initializer)
     {
+        accessor.ThrowIfNull();
+        initializer.ThrowIfNull();
+
         initializer.Initialize(accessor);
         return accessor;
     }
 
-    public void Dispose()
+    protected virtual void Dispose(bool disposing)
     {
         if (_initializedAccessor.IsValueCreated)
             _initializedAccessor.Value.Dispose();
+    }
+
+    public void Dispose()
+    {
+        Dispose(disposing: true);
     }
 }

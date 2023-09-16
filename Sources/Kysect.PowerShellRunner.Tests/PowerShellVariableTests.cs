@@ -64,7 +64,7 @@ public class PowerShellVariableTests
             .EnumerateElements()
             .ToList();
 
-        var referenceCollection = PowerShellReferenceCollection.Create(variable);
+        var referenceCollection = PowerShellReferences.Create(variable);
 
         referenceCollection.Name
             .Should().Be("$variable_name[0],$variable_name[1],$variable_name[2]");

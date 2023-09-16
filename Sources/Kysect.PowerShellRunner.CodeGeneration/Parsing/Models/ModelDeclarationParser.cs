@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis.CSharp;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 using System.Linq;
@@ -10,7 +11,9 @@ public class ModelDeclarationParser
     private readonly ILogger _logger;
     // TODO: use it for resolving property type. Need to resolve namespaces and return this info
     // and use it for adding necessary using to generated model.
+#pragma warning disable IDE0052 // Remove unread private members
     private readonly CSharpCompilation _compilation;
+#pragma warning restore IDE0052 // Remove unread private members
 
     public ModelDeclarationParser(ILogger logger, CSharpCompilation compilation)
     {
@@ -20,6 +23,8 @@ public class ModelDeclarationParser
 
     public ModelDeclarationParseResult Parse(ClassDeclarationSyntax syntax)
     {
+        syntax.ThrowIfNull();
+
         // TODO: support case when class is member of other class (inner)
         string modelName = syntax.Identifier.Text;
 

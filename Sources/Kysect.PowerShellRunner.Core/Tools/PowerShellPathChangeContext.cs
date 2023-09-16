@@ -12,6 +12,7 @@ public class PowerShellPathChangeContext : IDisposable
 {
     private readonly IPowerShellAccessor _powerShellAccessor;
     private readonly string _previousPath;
+    private bool _disposedValue;
 
     public static PowerShellPathChangeContext TemporaryChangeCurrentDirectory(IPowerShellAccessor accessor, string newPath)
     {
@@ -30,8 +31,21 @@ public class PowerShellPathChangeContext : IDisposable
         _previousPath = previousPath;
     }
 
+    protected virtual void Dispose(bool disposing)
+    {
+        if (_disposedValue)
+            return;
+
+        if (disposing)
+        {
+            _powerShellAccessor.ExecuteRaw(WellKnownQueryProvider.Instance.ChangeDirectory(_previousPath));
+        }
+
+        _disposedValue = true;
+    }
+
     public void Dispose()
     {
-        _powerShellAccessor.ExecuteRaw(WellKnownQueryProvider.Instance.ChangeDirectory(_previousPath));
+        Dispose(disposing: true);
     }
 }

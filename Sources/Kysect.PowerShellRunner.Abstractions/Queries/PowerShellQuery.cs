@@ -1,4 +1,5 @@
-﻿using Kysect.PowerShellRunner.Abstractions.Variables;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using Kysect.PowerShellRunner.Abstractions.Variables;
 
 namespace Kysect.PowerShellRunner.Abstractions.Queries;
 
@@ -15,6 +16,8 @@ public record struct PowerShellQuery(PowerShellVariable? ResultVariable, string 
 
     public PowerShellQuery With<T>(string argumentKey, IPowerShellReferenceable<T> variable)
     {
+        variable.ThrowIfNull();
+
         return this with { Query = $"{Query} -{argumentKey} {variable.AsReference()}" };
     }
 

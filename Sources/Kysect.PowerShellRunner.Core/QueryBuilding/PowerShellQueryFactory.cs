@@ -1,4 +1,5 @@
-﻿using Kysect.CommonLib.Exceptions;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using Kysect.CommonLib.Exceptions;
 using Kysect.PowerShellRunner.Abstractions.Cmdlets;
 using Kysect.PowerShellRunner.Abstractions.Parameters;
 using Kysect.PowerShellRunner.Abstractions.Queries;
@@ -15,6 +16,8 @@ public static class PowerShellQueryFactory
 {
     public static PowerShellQuery BuildFromCmdlet(this IPowerShellCmdlet cmdlet)
     {
+        cmdlet.ThrowIfNull();
+
         var query = new PowerShellQuery(cmdlet.CmdletName);
 
         Type type = cmdlet.GetType();
@@ -65,7 +68,7 @@ public static class PowerShellQueryFactory
         if (prepareValueMethod is null)
             throw new ArgumentException($"Cannot get method {prepareValueMethodName}");
 
-        return (IPowerShellCmdletParameterValue?)prepareValueMethod.Invoke(propertyValue, Array.Empty<object>());
+        return (IPowerShellCmdletParameterValue?) prepareValueMethod.Invoke(propertyValue, Array.Empty<object>());
     }
 
     private static string? GetPropertyValue(IPowerShellCmdlet cmdlet, PropertyInfo propertyInfo)
@@ -77,7 +80,7 @@ public static class PowerShellQueryFactory
             PowerShellReference powerShellParameterReferenceValue => powerShellParameterReferenceValue.Name,
             PowerShellCmdletParameterValue powerShellParameterValue => PrepareValueInternal(powerShellParameterValue.Value),
             null => null,
-            _ => throw SwitchDefaultException.OnUnexpectedType(nameof(value), value),
+            _ => throw SwitchDefaultExceptions.OnUnexpectedType(nameof(value), value),
         };
     }
 
@@ -89,7 +92,7 @@ public static class PowerShellQueryFactory
                 yield return selector(o);
         }
 
-        if (value is IEnumerable enumerable && value is not string)
+        if (value is IEnumerable enumerable and not string)
             return string.Join(", ", Select(enumerable, PrepareValue));
 
         return PrepareValue(value);

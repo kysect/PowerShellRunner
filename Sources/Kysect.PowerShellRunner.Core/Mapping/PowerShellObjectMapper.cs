@@ -31,6 +31,8 @@ public class PowerShellObjectMapper
 
     public T Map<T>(IPowerShellObject powerShellObject) where T : notnull
     {
+        powerShellObject.ThrowIfNull();
+
         var reflectionInstanceInitializer = new ReflectionInstanceInitializer<T>();
         foreach (IPowerShellObjectMember powerShellMember in powerShellObject.GetProperties())
         {

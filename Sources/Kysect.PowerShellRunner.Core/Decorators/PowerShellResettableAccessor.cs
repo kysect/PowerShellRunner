@@ -34,8 +34,13 @@ public class PowerShellResettableAccessor : IPowerShellAccessor
         return _powerShellAccessor;
     }
 
-    public void Dispose()
+    protected virtual void Dispose(bool disposing)
     {
         Release();
+    }
+
+    public void Dispose()
+    {
+        Dispose(disposing: true);
     }
 }

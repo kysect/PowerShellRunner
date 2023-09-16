@@ -1,11 +1,9 @@
 ﻿using Kysect.PowerShellRunner.Abstractions.Parameters;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Kysect.PowerShellRunner.Abstractions.Variables;
 
-public readonly struct PowerShellReference : IPowerShellCmdletParameterValue
+public readonly struct PowerShellReference : IPowerShellCmdletParameterValue, IEquatable<PowerShellReference>
 {
     public string Name { get; }
 
@@ -24,28 +22,30 @@ public readonly struct PowerShellReference : IPowerShellCmdletParameterValue
     {
         return Name;
     }
-}
 
-public readonly struct PowerShellReferenceCollection : IPowerShellCmdletParameterValue
-{
-    public string Name { get; }
-
-    public static PowerShellReferenceCollection Create<T>(IReadOnlyCollection<IPowerShellReferenceable<T>> values)
+    public override bool Equals(object? obj)
     {
-        var references = values
-            .Select(v => v.AsReference())
-            .ToList();
-
-        return new PowerShellReferenceCollection(references);
+        return obj is PowerShellReference reference &&
+               Equals(reference);
     }
 
-    public PowerShellReferenceCollection(IReadOnlyCollection<PowerShellReference> references)
+    public override int GetHashCode()
     {
-        Name = string.Join(",", references.Select(v => v.Name));
+        return HashCode.Combine(Name);
     }
 
-    public override string ToString()
+    public bool Equals(PowerShellReference other)
     {
-        return Name;
+        return Name == other.Name;
+    }
+
+    public static bool operator ==(PowerShellReference left, PowerShellReference right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(PowerShellReference left, PowerShellReference right)
+    {
+        return !(left == right);
     }
 }

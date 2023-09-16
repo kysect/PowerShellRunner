@@ -64,14 +64,19 @@ public class PowerShellAccessorLoggingDecorator : IPowerShellAccessor
                 break;
 
             default:
-                throw SwitchDefaultException.OnUnexpectedType(nameof(result), result);
+                throw SwitchDefaultExceptions.OnUnexpectedType(nameof(result), result);
         }
 
         return result;
     }
 
-    public void Dispose()
+    protected virtual void Dispose(bool disposing)
     {
         _innerImplementation.Dispose();
+    }
+
+    public void Dispose()
+    {
+        Dispose(disposing: true);
     }
 }

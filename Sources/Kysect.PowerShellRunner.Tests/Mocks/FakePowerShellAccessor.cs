@@ -27,7 +27,12 @@ public class FakePowerShellAccessor : IPowerShellAccessor
         return _result;
     }
 
+    protected virtual void Dispose(bool disposing)
+    {
+    }
+
     public void Dispose()
     {
+        Dispose(disposing: true);
     }
 }

@@ -12,7 +12,7 @@ public class PowerShellObjectMapperTests
     public void Map_SimplePoco_ReturnExpectedResult()
     {
         var mapper = PowerShellObjectMapper.Create();
-        var input = new SimplePoco(1, "1", new[] {2, 3});
+        var input = new SimplePoco(1, "1", new[] { 2, 3 });
         IPowerShellObject powerShellObject = new FakePowerShellObject<SimplePoco>(input);
 
         SimplePoco output = mapper.Map<SimplePoco>(powerShellObject);
@@ -35,7 +35,7 @@ public class PowerShellObjectMapperTests
     }
 
     [Test]
-    public void Map_TypeWithQeuivalentProperties_ReturnExpectedResult()
+    public void Map_TypeWithEquivalentProperties_ReturnExpectedResult()
     {
         var mapper = PowerShellObjectMapper.Create();
         var poco = new SimplePoco(1, "1", new[] { 2, 3 });
@@ -52,9 +52,9 @@ public class PowerShellObjectMapperTests
     {
         public int Value { get; }
         public string Value2 { get; }
-        public int[] Value3 { get; }
+        public IReadOnlyCollection<int> Value3 { get; }
 
-        public SimplePoco(int value, string value2, int[] value3)
+        public SimplePoco(int value, string value2, IReadOnlyCollection<int> value3)
         {
             Value = value;
             Value2 = value2;
@@ -66,9 +66,9 @@ public class PowerShellObjectMapperTests
     {
         public int Value { get; }
         public string Value2 { get; }
-        public int[] Value3 { get; }
+        public IReadOnlyCollection<int> Value3 { get; }
 
-        public OtherSimplePoco(int value, string value2, int[] value3)
+        public OtherSimplePoco(int value, string value2, IReadOnlyCollection<int> value3)
         {
             Value = value;
             Value2 = value2;

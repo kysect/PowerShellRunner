@@ -1,4 +1,5 @@
-﻿using Kysect.PowerShellRunner.Abstractions.Accessors;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using Kysect.PowerShellRunner.Abstractions.Accessors;
 using Kysect.PowerShellRunner.Core.Decorators.Initialization;
 using Microsoft.Extensions.Logging;
 
@@ -12,6 +13,8 @@ public class PowerShellAccessorDecoratorBuilder
 
     public PowerShellAccessorDecoratorBuilder(IPowerShellAccessorFactory powerShellAccessorFactory)
     {
+        powerShellAccessorFactory.ThrowIfNull();
+
         _powerShellAccessor = powerShellAccessorFactory.Create();
     }
 

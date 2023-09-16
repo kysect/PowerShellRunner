@@ -1,4 +1,5 @@
-﻿using Kysect.CommonLib.Reflection.TypeCache;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using Kysect.CommonLib.Reflection.TypeCache;
 using Kysect.PowerShellRunner.Abstractions.Objects;
 
 namespace Kysect.PowerShellRunner.Tests.Mocks;
@@ -22,6 +23,6 @@ public class FakePowerShellObject<T> : IPowerShellObject where T : notnull
 
     public string AsString()
     {
-        return _value.ToString();
+        return _value.ToString().ThrowIfNull();
     }
 }

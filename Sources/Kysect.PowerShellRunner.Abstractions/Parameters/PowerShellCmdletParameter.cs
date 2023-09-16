@@ -1,4 +1,6 @@
-﻿namespace Kysect.PowerShellRunner.Abstractions.Parameters;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+
+namespace Kysect.PowerShellRunner.Abstractions.Parameters;
 
 public class PowerShellCmdletParameter<T> : IPowerShellCmdletParameter<T> where T : notnull
 {
@@ -21,6 +23,8 @@ public class PowerShellCmdletParameter<T> : IPowerShellCmdletParameter<T> where 
 
     public static implicit operator PowerShellCmdletParameter<T>(PowerShellCmdletParameter<T[]> value)
     {
+        value.ThrowIfNull();
+
         return new PowerShellCmdletParameter<T>(value._parameterValue);
     }
 }
