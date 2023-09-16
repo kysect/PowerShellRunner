@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
 using Kysect.PowerShellRunner.CodeGeneration.Parsing.Models;
 using Kysect.PowerShellRunner.Tests.CodeGeneration.Tools;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using NUnit.Framework;
