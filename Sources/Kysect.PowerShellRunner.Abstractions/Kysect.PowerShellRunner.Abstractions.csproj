@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
 	  <LangVersion>latest</LangVersion>
 	  <Nullable>enable</Nullable>
-	  <Version>0.1.1</Version>
+	  <Version>0.1.2</Version>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
@@ -13,7 +13,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Kysect.CommonLib" Version="0.1.9" />
+    <PackageReference Include="Kysect.CommonLib" Version="0.1.10" />
     <PackageReference Include="Kysect.Editorconfig" Version="1.1.4" />
     <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.1" />
   </ItemGroup>
