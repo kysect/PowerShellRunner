@@ -80,7 +80,7 @@ public static class PowerShellQueryFactory
             PowerShellReference powerShellParameterReferenceValue => powerShellParameterReferenceValue.Name,
             PowerShellCmdletParameterValue powerShellParameterValue => PrepareValueInternal(powerShellParameterValue.Value),
             null => null,
-            _ => throw SwitchDefaultExceptions.OnUnexpectedType(nameof(value), value),
+            _ => throw SwitchDefaultExceptions.OnUnexpectedType(value),
         };
     }
 

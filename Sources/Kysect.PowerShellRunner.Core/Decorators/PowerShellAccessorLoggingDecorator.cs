@@ -64,7 +64,7 @@ public class PowerShellAccessorLoggingDecorator : IPowerShellAccessor
                 break;
 
             default:
-                throw SwitchDefaultExceptions.OnUnexpectedType(nameof(result), result);
+                throw SwitchDefaultExceptions.OnUnexpectedType(result);
         }
 
         return result;
