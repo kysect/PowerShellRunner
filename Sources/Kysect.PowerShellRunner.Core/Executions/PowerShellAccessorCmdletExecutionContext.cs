@@ -87,11 +87,11 @@ public class PowerShellAccessorCmdletExecutionContext
             .ToList();
     }
 
-    public PowerShellVariable<IPowerShellObject> ExecuteAndSetTo(string variableName)
+    public PowerShellVariable ExecuteAndSetTo(string variableName)
     {
         var powerShellVariable = new PowerShellVariable(variableName);
         PowerShellQuery powerShellQuery = BuildQuery();
-        return new PowerShellVariableInitializer(_accessor, powerShellVariable).With<IPowerShellObject>(powerShellQuery);
+        return new PowerShellVariableInitializer(_accessor, powerShellVariable).With(powerShellQuery);
     }
 
     private PowerShellQuery BuildQuery()
