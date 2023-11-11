@@ -13,11 +13,11 @@ public class CmdletBaseSyntaxInfoParser
     public const string PsCmdletBaseTypeName = "PSCmdletBase";
     public const string WriteObjectMethodName = "WriteObject";
 
-    private readonly CmdletBaseInheritorAttributeSyntaxParser _cmdletBaseInheritorAttributeSyntaxParser;
+    private readonly CmdletAttributeSyntaxParser _cmdletAttributeSyntaxParser;
 
     public CmdletBaseSyntaxInfoParser()
     {
-        _cmdletBaseInheritorAttributeSyntaxParser = new CmdletBaseInheritorAttributeSyntaxParser();
+        _cmdletAttributeSyntaxParser = new CmdletAttributeSyntaxParser();
     }
 
     public bool CanBeParsedAsCmdlet(SolutionCompilationContextItem compilationContextItem)
@@ -27,7 +27,7 @@ public class CmdletBaseSyntaxInfoParser
         if (!compilationContextItem.Symbol.IsInheritedOf(PsCmdletBaseTypeName))
             return false;
 
-        if (!_cmdletBaseInheritorAttributeSyntaxParser.HasCmdletAttributes(compilationContextItem.Syntax))
+        if (!_cmdletAttributeSyntaxParser.HasCmdletAttributes(compilationContextItem.Syntax))
             return false;
 
         return true;
@@ -37,7 +37,7 @@ public class CmdletBaseSyntaxInfoParser
     {
         compilationContextItem.ThrowIfNull();
 
-        CmdletBaseInheritorCmdletAttributeSyntax cmdletAttributeSyntax = _cmdletBaseInheritorAttributeSyntaxParser.ExtractCmdletAttribute(compilationContextItem.Syntax);
+        CmdletAttributeSyntax cmdletAttributeSyntax = _cmdletAttributeSyntaxParser.ExtractCmdletAttribute(compilationContextItem.Syntax);
         IReadOnlyCollection<PropertyDeclarationSyntax> properties = GetAllParameterProperties(compilationContextItem);
         IReadOnlyCollection<InvocationExpressionSyntax> writeObjectInvocations = GetAlWriteObjectInvocations(compilationContextItem);
 

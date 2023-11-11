@@ -4,12 +4,12 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.SyntaxParsing;
 
-public class CmdletBaseInheritorAttributeSyntaxParser
+public class CmdletAttributeSyntaxParser
 {
     public const int VerbArgumentIndex = 0;
     public const int NounArgumentIndex = 1;
 
-    public CmdletBaseInheritorAttributeSyntaxParser()
+    public CmdletAttributeSyntaxParser()
     {
     }
 
@@ -18,7 +18,7 @@ public class CmdletBaseInheritorAttributeSyntaxParser
         return typeDeclaration.HasAttribute("Cmdlet");
     }
 
-    public CmdletBaseInheritorCmdletAttributeSyntax ExtractCmdletAttribute(BaseTypeDeclarationSyntax typeDeclarationSyntax)
+    public CmdletAttributeSyntax ExtractCmdletAttribute(BaseTypeDeclarationSyntax typeDeclarationSyntax)
     {
         typeDeclarationSyntax.ThrowIfNull();
 
@@ -33,6 +33,6 @@ public class CmdletBaseInheritorAttributeSyntaxParser
         ExpressionSyntax verbSyntax = cmdletAttribute.ArgumentList.Arguments[VerbArgumentIndex].Expression;
         ExpressionSyntax nounSyntax = cmdletAttribute.ArgumentList.Arguments[NounArgumentIndex].Expression;
 
-        return new CmdletBaseInheritorCmdletAttributeSyntax(cmdletAttribute, verbSyntax, nounSyntax);
+        return new CmdletAttributeSyntax(cmdletAttribute, verbSyntax, nounSyntax);
     }
 }
