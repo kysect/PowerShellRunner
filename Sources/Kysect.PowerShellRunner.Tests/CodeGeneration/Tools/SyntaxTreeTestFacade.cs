@@ -15,6 +15,7 @@ public class SyntaxTreeTestFacade
 
     public SyntaxTree SyntaxTree { get; }
     public CSharpCompilation Compilation { get; }
+    public SemanticModel SemanticModel { get; }
 
     public static SyntaxTreeTestFacade Create(string input)
     {
@@ -29,6 +30,7 @@ public class SyntaxTreeTestFacade
     {
         SyntaxTree = syntaxTree.ThrowIfNull();
         Compilation = compilation.ThrowIfNull();
+        SemanticModel = Compilation.GetSemanticModel(SyntaxTree, true);
     }
 
     public BaseTypeDeclarationSyntax GetTypeSyntax(string name)
@@ -40,10 +42,9 @@ public class SyntaxTreeTestFacade
     public INamedTypeSymbol GetTypeSymbol(string name)
     {
         CompilationUnitSyntax root = SyntaxTree.GetRoot().To<CompilationUnitSyntax>();
-        SemanticModel sm = Compilation.GetSemanticModel(SyntaxTree, true);
 
         BaseTypeDeclarationSyntax classC = root.DescendantNodes().OfType<BaseTypeDeclarationSyntax>().Single(i => i.Identifier.Text == name);
-        INamedTypeSymbol? classSymbol = sm.GetDeclaredSymbol(classC);
+        INamedTypeSymbol? classSymbol = SemanticModel.GetDeclaredSymbol(classC);
 
         return classSymbol.ThrowIfNull();
     }
