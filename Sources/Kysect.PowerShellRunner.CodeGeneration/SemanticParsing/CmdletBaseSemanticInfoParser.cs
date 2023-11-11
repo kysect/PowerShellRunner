@@ -38,7 +38,7 @@ public class CmdletBaseSemanticInfoParser
         SolutionCompilationContextItem compilationContextItem = syntaxParseResult.SolutionCompilationContextItem;
         SemanticModel semanticModel = syntaxParseResult.SolutionCompilationContextItem.SemanticModel;
 
-        CmdletAttributeValues cmdletAttributeValues = _attributeValueParser.ParsePowerShellNameAttribute(semanticModel, syntaxParseResult.CmdletAttribute);
+        CmdletAttributeValues cmdletAttributeValues = _attributeValueParser.ParseCmdletAttribute(semanticModel, syntaxParseResult.CmdletAttribute);
         IReadOnlyCollection<RoslynPropertySymbolWrapper> properties = GetPropertySemanticDescriptors(syntaxParseResult, semanticModel);
         IReadOnlyCollection<RoslynTypeSymbolWrapper> originalReturnType = GetOriginalReturnType(compilationContextItem, syntaxParseResult);
         IReadOnlyCollection<RoslynTypeSymbolWrapper> resolvedReturnTypes = GetReturnTypeInheritances(compilationContextItem, originalReturnType);

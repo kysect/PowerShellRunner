@@ -18,7 +18,7 @@ public class CmdletAttributeValueParser
         _logger = logger;
     }
 
-    public CmdletAttributeValues ParsePowerShellNameAttribute(SemanticModel semanticModel, CmdletAttributeSyntax cmdletAttribute)
+    public CmdletAttributeValues ParseCmdletAttribute(SemanticModel semanticModel, CmdletAttributeSyntax cmdletAttribute)
     {
         semanticModel.ThrowIfNull();
         cmdletAttribute.ThrowIfNull();
