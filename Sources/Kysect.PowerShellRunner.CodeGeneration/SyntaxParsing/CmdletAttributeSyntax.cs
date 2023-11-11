@@ -2,13 +2,13 @@
 
 namespace Kysect.PowerShellRunner.CodeGeneration.SyntaxParsing;
 
-public class CmdletBaseInheritorCmdletAttributeSyntax
+public class CmdletAttributeSyntax
 {
     public AttributeSyntax Attribute { get; }
     public ExpressionSyntax VerbSyntax { get; }
     public ExpressionSyntax NounSyntax { get; }
 
-    public CmdletBaseInheritorCmdletAttributeSyntax(AttributeSyntax attribute, ExpressionSyntax verbSyntax, ExpressionSyntax nounSyntax)
+    public CmdletAttributeSyntax(AttributeSyntax attribute, ExpressionSyntax verbSyntax, ExpressionSyntax nounSyntax)
     {
         Attribute = attribute;
         VerbSyntax = verbSyntax;

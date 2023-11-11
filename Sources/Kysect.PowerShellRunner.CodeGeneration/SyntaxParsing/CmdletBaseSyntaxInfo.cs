@@ -7,13 +7,13 @@ namespace Kysect.PowerShellRunner.CodeGeneration.SyntaxParsing;
 public class CmdletBaseSyntaxInfo
 {
     public SolutionCompilationContextItem SolutionCompilationContextItem { get; }
-    public CmdletBaseInheritorCmdletAttributeSyntax CmdletAttribute { get; }
+    public CmdletAttributeSyntax CmdletAttribute { get; }
     public IReadOnlyCollection<PropertyDeclarationSyntax> ParameterProperties { get; }
     public IReadOnlyCollection<InvocationExpressionSyntax> WriteObjectMethodInvocations { get; }
 
     public CmdletBaseSyntaxInfo(
         SolutionCompilationContextItem solutionCompilationContextItem,
-        CmdletBaseInheritorCmdletAttributeSyntax cmdletAttribute,
+        CmdletAttributeSyntax cmdletAttribute,
         IReadOnlyCollection<PropertyDeclarationSyntax> parameterProperties,
         IReadOnlyCollection<InvocationExpressionSyntax> writeObjectMethodInvocations)
     {

@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis;
 using NUnit.Framework;
 using Kysect.PowerShellRunner.CodeGeneration.Common;
@@ -19,10 +18,7 @@ public class RoslynTypeSymbolExtensionsTests
                         """;
         string[] expected = { "B", "A", "Object" };
 
-
-        SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(input);
-        CSharpCompilation compilation = TestCompilationFactory.CreateCompilation(syntaxTree);
-        var syntaxTreeTestFacade = new SyntaxTreeTestFacade(syntaxTree, compilation);
+        var syntaxTreeTestFacade = SyntaxTreeTestFacade.Create(input);
 
         INamedTypeSymbol classSymbol = syntaxTreeTestFacade.GetTypeSymbol("C");
 
