@@ -15,25 +15,22 @@ namespace Kysect.PowerShellRunner.CodeGeneration.SemanticParsing;
 
 public class CmdletBaseSemanticInfoParser
 {
-    private readonly SolutionCompilationTypeInheritancesSearcher _typeInheritancesSearcher;
     private readonly CmdletWriteObjectMethodParser _writeObjectMethodParser;
     private readonly CmdletAttributeValueParser _attributeValueParser;
     private readonly ILogger _logger;
 
-    public CmdletBaseSemanticInfoParser(
-        SolutionCompilationTypeInheritancesSearcher typeInheritancesSearcher,
-        ILogger logger)
+    public CmdletBaseSemanticInfoParser(ILogger logger)
     {
-        _typeInheritancesSearcher = typeInheritancesSearcher;
         _logger = logger;
 
         _writeObjectMethodParser = new CmdletWriteObjectMethodParser(logger);
         _attributeValueParser = new CmdletAttributeValueParser(logger);
     }
 
-    public CmdletBaseSemanticInfo Parse(CmdletBaseSyntaxInfo syntaxParseResult)
+    public CmdletBaseSemanticInfo Parse(CmdletBaseSyntaxInfo syntaxParseResult, SolutionCompilationTypeInheritancesSearcher typeInheritancesSearcher)
     {
         syntaxParseResult.ThrowIfNull();
+        typeInheritancesSearcher.ThrowIfNull();
 
         SolutionCompilationContextItem compilationContextItem = syntaxParseResult.SolutionCompilationContextItem;
         SemanticModel semanticModel = syntaxParseResult.SolutionCompilationContextItem.SemanticModel;
@@ -41,7 +38,7 @@ public class CmdletBaseSemanticInfoParser
         CmdletAttributeValues cmdletAttributeValues = _attributeValueParser.ParseCmdletAttribute(semanticModel, syntaxParseResult.CmdletAttribute);
         IReadOnlyCollection<RoslynPropertySymbolWrapper> properties = GetPropertySemanticDescriptors(syntaxParseResult, semanticModel);
         IReadOnlyCollection<RoslynTypeSymbolWrapper> originalReturnType = GetOriginalReturnType(compilationContextItem, syntaxParseResult);
-        IReadOnlyCollection<RoslynTypeSymbolWrapper> resolvedReturnTypes = GetReturnTypeInheritances(compilationContextItem, originalReturnType);
+        IReadOnlyCollection<RoslynTypeSymbolWrapper> resolvedReturnTypes = GetReturnTypeInheritances(compilationContextItem, originalReturnType, typeInheritancesSearcher);
         RoslynTypeSymbolWrapper? mainReturnType = SelectMainReturnType(syntaxParseResult, originalReturnType);
 
         return new CmdletBaseSemanticInfo(
@@ -96,7 +93,8 @@ public class CmdletBaseSemanticInfoParser
 
     private IReadOnlyCollection<RoslynTypeSymbolWrapper> GetReturnTypeInheritances(
         SolutionCompilationContextItem compilationContextItem,
-        IReadOnlyCollection<RoslynTypeSymbolWrapper> originalReturnTypes)
+        IReadOnlyCollection<RoslynTypeSymbolWrapper> originalReturnTypes,
+        SolutionCompilationTypeInheritancesSearcher typeInheritancesSearcher)
     {
         var result = new List<ITypeSymbol>();
 
@@ -108,7 +106,7 @@ public class CmdletBaseSemanticInfoParser
                 continue;
             }
 
-            foreach (INamedTypeSymbol namedTypeSymbol in _typeInheritancesSearcher.GetAllInheritances(originalReturnType.RoslynSymbol))
+            foreach (INamedTypeSymbol namedTypeSymbol in typeInheritancesSearcher.GetAllInheritances(originalReturnType.RoslynSymbol))
             {
                 if (originalReturnTypes.All(t => SymbolEqualityComparer.Default.Equals(t.RoslynSymbol, namedTypeSymbol)))
                     result.Add(namedTypeSymbol);
