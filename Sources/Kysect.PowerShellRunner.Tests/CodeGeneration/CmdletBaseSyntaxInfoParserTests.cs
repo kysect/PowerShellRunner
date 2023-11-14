@@ -17,7 +17,7 @@ public class CmdletBaseSyntaxInfoParserTests
 
     public CmdletBaseSyntaxInfoParserTests()
     {
-        _baseSyntaxInfoParser = new CmdletBaseSyntaxInfoParser();
+        _baseSyntaxInfoParser = new CmdletBaseSyntaxInfoParser(PredefinedLogger.CreateConsoleLogger());
     }
 
     [Test]

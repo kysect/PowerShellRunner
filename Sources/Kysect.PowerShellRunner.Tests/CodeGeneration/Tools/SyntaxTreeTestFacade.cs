@@ -3,6 +3,8 @@ using Kysect.CommonLib.DependencyInjection;
 using Kysect.CommonLib.ProgressTracking;
 using Kysect.PowerShellRunner.CodeGeneration.Common;
 using Kysect.PowerShellRunner.CodeGeneration.Compilation;
+using Kysect.PowerShellRunner.CodeGeneration.SemanticParsing;
+using Kysect.PowerShellRunner.CodeGeneration.SyntaxParsing;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -70,5 +72,19 @@ public class SyntaxTreeTestFacade
             .OfType<BaseTypeDeclarationSyntax>()
             .SelectMany(t => t.GetInvocationExpressionByName(name))
             .ToList();
+    }
+
+    public CmdletBaseSemanticInfo CreateCmdletSemanticInfo(string cmdletName)
+    {
+        cmdletName.ThrowIfNull();
+
+        SolutionCompilationContext compilationContext = CreateCompilationContext();
+        var typeInheritancesSearcher = SolutionCompilationTypeInheritancesSearcher.CreateInstance(compilationContext.Items);
+
+        CmdletBaseSyntaxInfoParser baseSyntaxParser = new CmdletBaseSyntaxInfoParser(PredefinedLogger.CreateConsoleLogger());
+        CmdletBaseSemanticInfoParser baseSemanticInfoParser = new CmdletBaseSemanticInfoParser(PredefinedLogger.CreateConsoleLogger());
+        CmdletBaseSyntaxInfo syntaxParseResult = baseSyntaxParser.ExtractSyntaxInfo(CreateCompilationContextItem(cmdletName));
+        CmdletBaseSemanticInfo cmdletBaseSemanticInfo = baseSemanticInfoParser.Parse(syntaxParseResult, typeInheritancesSearcher);
+        return cmdletBaseSemanticInfo;
     }
 }

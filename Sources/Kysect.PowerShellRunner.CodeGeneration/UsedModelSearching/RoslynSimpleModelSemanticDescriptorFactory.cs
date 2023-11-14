@@ -39,7 +39,7 @@ public class RoslynSimpleModelSemanticDescriptorFactory
             .Select(p => new RoslynPropertySymbolWrapper(p))
             .ToList();
 
-        return new RoslynSimpleModelSemanticDescriptor(name, baseType, publicProperties, nonPublicProperties);
+        return new RoslynSimpleModelSemanticDescriptor(name, baseType, roslynSymbol.ContainingNamespace?.Name, publicProperties, nonPublicProperties);
     }
 
     private static RoslynTypeSymbolWrapper? GetBaseType(ITypeSymbol roslynSymbol, IRoslynSimpleModelBaseTypeFilter filter)

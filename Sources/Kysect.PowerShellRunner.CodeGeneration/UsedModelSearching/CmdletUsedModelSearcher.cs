@@ -11,9 +11,11 @@ namespace Kysect.PowerShellRunner.CodeGeneration.UsedModelSearching;
 public class CmdletUsedModelSearcher
 {
     private readonly RoslynDependentTypeSearcher _dependentTypeSearcher;
+    private readonly ILogger _logger;
 
     public CmdletUsedModelSearcher(ILogger logger, RoslynSimpleModelSemanticDescriptorFactory simpleModelSemanticDescriptorFactory)
     {
+        _logger = logger;
         _dependentTypeSearcher = new RoslynDependentTypeSearcher(logger, simpleModelSemanticDescriptorFactory);
     }
 
@@ -23,7 +25,10 @@ public class CmdletUsedModelSearcher
     {
         cmdletSemanticParseResults.ThrowIfNull();
 
+        _logger.LogInformation("Collecting used models in cmdlets");
+        _logger.LogDebug("Getting explicit dependencies");
         IReadOnlyCollection<RoslynTypeSymbolWrapper> usedTypesInCmdlets = GetAllTypesFromCmdletSignatures(cmdletSemanticParseResults);
+        _logger.LogDebug("Getting transitive dependencies from {Count} explicit dependencies", usedTypesInCmdlets.Count);
         RoslynDependentTypeSearcherResult allUsedModels = _dependentTypeSearcher.LoadAllDependentTypes(solutionCompilationContext, usedTypesInCmdlets);
         return allUsedModels;
     }

@@ -23,10 +23,10 @@ public class PowerShellSemanticSchemaGenerator<TSyntax, TSemantic>
     private readonly ISolutionSourceFileContentReader _sourceFileContentReader;
     private readonly SolutionCompilationContextFactory _solutionCompilationContextFactory;
     private readonly CmdletBaseSyntaxInfoParser _baseSyntaxParser;
-    private readonly ILogger _logger;
     private readonly CmdletBaseSemanticInfoParser _baseSemanticInfoParser;
-    private readonly IExtendedCmdletSyntaxInfoParser<TSyntax> _psCmdletBaseTypeParser;
+    private readonly IExtendedCmdletSyntaxInfoParser<TSyntax> _extendedCmdletSyntaxInfoParser;
     private readonly IExtendedCmdletSemanticInfoParser<TSyntax, TSemantic> _extendedSemanticParser;
+    private readonly ILogger _logger;
 
     public PowerShellSemanticSchemaGenerator(
         ISolutionSourceFileContentReader sourceFileContentReader,
@@ -37,14 +37,14 @@ public class PowerShellSemanticSchemaGenerator<TSyntax, TSemantic>
         ILogger logger)
     {
         _sourceFileContentReader = sourceFileContentReader;
-        _psCmdletBaseTypeParser = extendedSyntaxParser;
+        _extendedCmdletSyntaxInfoParser = extendedSyntaxParser;
         _extendedSemanticParser = extendedSemanticParser;
         _progressTrackerFactory = progressTrackerFactory;
         _logger = logger;
 
         _solutionCompilationContextFactory = new SolutionCompilationContextFactory(_progressTrackerFactory, _logger);
         _usedModelSearcher = new CmdletUsedModelSearcher(logger, modelSemanticDescriptorFactory);
-        _baseSyntaxParser = new CmdletBaseSyntaxInfoParser();
+        _baseSyntaxParser = new CmdletBaseSyntaxInfoParser(logger);
         _baseSemanticInfoParser = new CmdletBaseSemanticInfoParser(_logger);
     }
 
@@ -90,10 +90,10 @@ public class PowerShellSemanticSchemaGenerator<TSyntax, TSemantic>
             return null;
 
         CmdletBaseSyntaxInfo baseSyntaxInfo = _baseSyntaxParser.ExtractSyntaxInfo(compilationContextItem);
-        if (!_psCmdletBaseTypeParser.Acceptable(baseSyntaxInfo))
+        if (!_extendedCmdletSyntaxInfoParser.Acceptable(baseSyntaxInfo))
             return null;
 
-        return _psCmdletBaseTypeParser.Parse(baseSyntaxInfo);
+        return _extendedCmdletSyntaxInfoParser.Parse(baseSyntaxInfo);
     }
 
     private TSemantic? TryParseCmdletSemantic(SolutionCompilationTypeInheritancesSearcher typeInheritancesSearcher, TSyntax syntaxParseResult)

@@ -2,6 +2,7 @@
 using Kysect.PowerShellRunner.CodeGeneration.Common;
 using Kysect.PowerShellRunner.CodeGeneration.Compilation;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,9 +15,11 @@ public class CmdletBaseSyntaxInfoParser
     public const string WriteObjectMethodName = "WriteObject";
 
     private readonly CmdletAttributeSyntaxParser _cmdletAttributeSyntaxParser;
+    private readonly ILogger _logger;
 
-    public CmdletBaseSyntaxInfoParser()
+    public CmdletBaseSyntaxInfoParser(ILogger logger)
     {
+        _logger = logger;
         _cmdletAttributeSyntaxParser = new CmdletAttributeSyntaxParser();
     }
 
@@ -37,6 +40,7 @@ public class CmdletBaseSyntaxInfoParser
     {
         compilationContextItem.ThrowIfNull();
 
+        _logger.LogDebug("Extracting syntax info from {TypeName}", compilationContextItem.Symbol.Name);
         CmdletAttributeSyntax cmdletAttributeSyntax = _cmdletAttributeSyntaxParser.ExtractCmdletAttribute(compilationContextItem.Syntax);
         IReadOnlyCollection<PropertyDeclarationSyntax> properties = GetAllParameterProperties(compilationContextItem);
         IReadOnlyCollection<InvocationExpressionSyntax> writeObjectInvocations = GetAlWriteObjectInvocations(compilationContextItem);
