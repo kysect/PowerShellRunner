@@ -1,5 +1,6 @@
 ﻿using Kysect.CommonLib.ProgressTracking;
 using Kysect.DotnetSlnParser;
+using Kysect.PowerShellRunner.CodeGeneration.Compilation;
 using Kysect.PowerShellRunner.CodeGeneration.SemanticParsing;
 using Kysect.PowerShellRunner.CodeGeneration.SolutionReading;
 using Kysect.PowerShellRunner.CodeGeneration.SyntaxParsing;
@@ -23,6 +24,7 @@ public class PowerShellSemanticSchemaGeneratorFactory
     public PowerShellSemanticSchemaGenerator<TSyntax, TSemantic> Create<TSyntax, TSemantic>(
         IExtendedCmdletSyntaxInfoParser<TSyntax> cmdletBaseInheritorSyntaxParser,
         IExtendedCmdletSemanticInfoParser<TSyntax, TSemantic> cmdletBaseInheritorSemanticParser,
+        ISharpCompilationProviderFactory compilationProviderFactory,
         IRoslynSimpleModelBaseTypeFilter simpleModelBaseTypeFilter,
         IRoslynSimpleModelPropertyFilter simpleModelPropertyFilter,
         ISolutionProjectFilter solutionProjectFilter,
@@ -37,7 +39,9 @@ public class PowerShellSemanticSchemaGeneratorFactory
         var sourceFileFinder = new DotnetSolutionSourceFileFinder(fileSystem, _logger);
         var sourceFileContentReader = new SolutionSourceFileContentReader(solutionStructureParser, sourceFileFinder, _progressTrackerFactory, solutionProjectFilter, _logger, solutionSourceFileFilter, fileSystem);
 
-        return new PowerShellSemanticSchemaGenerator<TSyntax, TSemantic>(sourceFileContentReader,
+        return new PowerShellSemanticSchemaGenerator<TSyntax, TSemantic>(
+            sourceFileContentReader,
+            compilationProviderFactory,
             modelSemanticDescriptorFactory,
             cmdletBaseInheritorSyntaxParser,
             cmdletBaseInheritorSemanticParser,

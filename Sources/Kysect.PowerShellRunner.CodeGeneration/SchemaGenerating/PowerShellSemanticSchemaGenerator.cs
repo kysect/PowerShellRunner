@@ -10,7 +10,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Management.Automation;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.SchemaGenerating;
 
@@ -21,6 +20,7 @@ public class PowerShellSemanticSchemaGenerator<TSyntax, TSemantic>
     private readonly CmdletUsedModelSearcher _usedModelSearcher;
     private readonly IProgressTrackerFactory _progressTrackerFactory;
     private readonly ISolutionSourceFileContentReader _sourceFileContentReader;
+    private readonly ISharpCompilationProviderFactory _compilationProviderFactory;
     private readonly SolutionCompilationContextFactory _solutionCompilationContextFactory;
     private readonly CmdletBaseSyntaxInfoParser _baseSyntaxParser;
     private readonly CmdletBaseSemanticInfoParser _baseSemanticInfoParser;
@@ -30,6 +30,7 @@ public class PowerShellSemanticSchemaGenerator<TSyntax, TSemantic>
 
     public PowerShellSemanticSchemaGenerator(
         ISolutionSourceFileContentReader sourceFileContentReader,
+        ISharpCompilationProviderFactory compilationProviderFactory,
         RoslynSimpleModelSemanticDescriptorFactory modelSemanticDescriptorFactory,
         IExtendedCmdletSyntaxInfoParser<TSyntax> extendedSyntaxParser,
         IExtendedCmdletSemanticInfoParser<TSyntax, TSemantic> extendedSemanticParser,
@@ -37,6 +38,7 @@ public class PowerShellSemanticSchemaGenerator<TSyntax, TSemantic>
         ILogger logger)
     {
         _sourceFileContentReader = sourceFileContentReader;
+        _compilationProviderFactory = compilationProviderFactory;
         _extendedCmdletSyntaxInfoParser = extendedSyntaxParser;
         _extendedSemanticParser = extendedSemanticParser;
         _progressTrackerFactory = progressTrackerFactory;
@@ -59,11 +61,7 @@ public class PowerShellSemanticSchemaGenerator<TSyntax, TSemantic>
             .SelectParallel("Parse C# syntax trees from files", fileContent => CSharpSyntaxTree.ParseText(fileContent));
 
         _logger.LogInformation("Creating semantic model");
-        CSharpCompilation sharpCompilation = SharpCompilationProviderBuilder
-            .CreateForStandard("Analysis")
-            .AddReferences(typeof(SwitchParameter).Assembly)
-            .Build();
-        CSharpCompilation compilation = sharpCompilation.AddSyntaxTrees(syntaxTrees.Values);
+        CSharpCompilation compilation = _compilationProviderFactory.Build().AddSyntaxTrees(syntaxTrees.Values);
 
         _logger.LogInformation("Getting information about types in solution");
         SolutionCompilationContext solutionCompilationContext = _solutionCompilationContextFactory.Create(compilation, syntaxTrees.Values);
