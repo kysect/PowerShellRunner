@@ -33,7 +33,7 @@ public class RoslynDependentTypeSearcher
 
         var allDefinedTypes = solutionCompilationContext
             .Items
-            .Select(i => RoslynTypeSymbolExtensions.GetNameWithContainingParent(i.Symbol))
+            .Select(i => i.Symbol.GetNameWithContainingParent())
             .ToImmutableHashSet();
 
         var rootTypes = typeSemanticDescriptors

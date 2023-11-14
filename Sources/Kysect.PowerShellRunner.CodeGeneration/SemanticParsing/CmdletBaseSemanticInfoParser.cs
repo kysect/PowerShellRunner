@@ -32,6 +32,7 @@ public class CmdletBaseSemanticInfoParser
         syntaxParseResult.ThrowIfNull();
         typeInheritancesSearcher.ThrowIfNull();
 
+        _logger.LogDebug("Parse semantic for {TypeName}", syntaxParseResult.SolutionCompilationContextItem.Symbol.Name);
         SolutionCompilationContextItem compilationContextItem = syntaxParseResult.SolutionCompilationContextItem;
         SemanticModel semanticModel = syntaxParseResult.SolutionCompilationContextItem.SemanticModel;
 
