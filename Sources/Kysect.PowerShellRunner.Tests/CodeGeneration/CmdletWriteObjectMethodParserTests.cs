@@ -4,11 +4,11 @@ using Kysect.PowerShellRunner.CodeGeneration.Common;
 using Kysect.PowerShellRunner.CodeGeneration.Compilation;
 using Kysect.PowerShellRunner.CodeGeneration.SemanticParsing;
 using Kysect.PowerShellRunner.CodeGeneration.SyntaxParsing;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Kysect.PowerShellRunner.Tests.CodeGeneration.Tools;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
-using Kysect.PowerShellRunner.Tests.CodeGeneration.Tools;
 
 namespace Kysect.PowerShellRunner.Tests.CodeGeneration;
 

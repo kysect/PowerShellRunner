@@ -1,6 +1,6 @@
 ﻿using Kysect.CommonLib.BaseTypes.Extensions;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using System.IO;
 using System.Reflection;
 
@@ -24,7 +24,6 @@ public class SharpCompilationProviderBuilder
             .AddReferences(StandardLibraryAssemblyPath)
             .AddReferences(Path.Combine(AssemblyPath, "System.dll"))
             .AddReferences(Path.Combine(AssemblyPath, "System.Collections.dll"))
-            //.AddReferences(MetadataReference.CreateFromFile(Path.Combine(AssemblyPath, "System.Core.dll")))
             .AddReferences(Path.Combine(AssemblyPath, "System.Linq.dll"))
             .AddReferences(Path.Combine(AssemblyPath, "System.Linq.Queryable.dll"))
             .AddReferences(Path.Combine(AssemblyPath, "System.Linq.Expressions.dll"))

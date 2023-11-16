@@ -1,11 +1,11 @@
-﻿using Kysect.PowerShellRunner.CodeGeneration.Common;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using Kysect.PowerShellRunner.CodeGeneration.Common;
 using Kysect.PowerShellRunner.CodeGeneration.SyntaxParsing;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
-using Kysect.CommonLib.BaseTypes.Extensions;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.SemanticParsing;
 
