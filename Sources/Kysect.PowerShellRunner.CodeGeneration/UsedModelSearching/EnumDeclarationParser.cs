@@ -1,11 +1,11 @@
-﻿using Kysect.PowerShellRunner.CodeGeneration.Common;
+﻿using Kysect.CommonLib.BaseTypes.Extensions;
+using Kysect.PowerShellRunner.CodeGeneration.Common;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
-using Kysect.CommonLib.BaseTypes.Extensions;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.UsedModelSearching;
 

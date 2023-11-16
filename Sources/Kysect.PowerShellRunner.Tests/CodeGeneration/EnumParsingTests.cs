@@ -1,9 +1,9 @@
 ﻿using Kysect.CommonLib.DependencyInjection;
 using Kysect.PowerShellRunner.CodeGeneration.UsedModelSearching;
 using Kysect.PowerShellRunner.Tests.CodeGeneration.Tools;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NUnit.Framework;
 
 namespace Kysect.PowerShellRunner.Tests.CodeGeneration;

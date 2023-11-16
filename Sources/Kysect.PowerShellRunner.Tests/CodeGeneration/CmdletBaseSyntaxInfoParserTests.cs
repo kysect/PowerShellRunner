@@ -1,12 +1,12 @@
 ﻿using FluentAssertions;
+using Kysect.CommonLib.DependencyInjection;
+using Kysect.CommonLib.ProgressTracking;
 using Kysect.PowerShellRunner.CodeGeneration.Compilation;
 using Kysect.PowerShellRunner.CodeGeneration.SyntaxParsing;
 using Kysect.PowerShellRunner.Tests.CodeGeneration.Tools;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using NUnit.Framework;
-using Kysect.CommonLib.DependencyInjection;
-using Kysect.CommonLib.ProgressTracking;
 
 namespace Kysect.PowerShellRunner.Tests.CodeGeneration;
 

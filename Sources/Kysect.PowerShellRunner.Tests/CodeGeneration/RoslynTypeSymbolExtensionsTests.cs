@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using Microsoft.CodeAnalysis;
-using NUnit.Framework;
 using Kysect.PowerShellRunner.CodeGeneration.Common;
 using Kysect.PowerShellRunner.Tests.CodeGeneration.Tools;
+using Microsoft.CodeAnalysis;
+using NUnit.Framework;
 
 namespace Kysect.PowerShellRunner.Tests.CodeGeneration;
 
