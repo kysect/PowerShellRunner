@@ -2,7 +2,7 @@
 using Kysect.PowerShellRunner.Abstractions.Objects;
 using System.Management.Automation;
 
-namespace Kysect.PowerShellRunner.FrameworkImplementation;
+namespace Kysect.PowerShellRunner.Core.Accessors.Models;
 
 public class PowerShellObjectMember : IPowerShellObjectMember
 {

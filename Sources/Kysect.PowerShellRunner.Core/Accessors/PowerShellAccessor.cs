@@ -1,11 +1,12 @@
 ﻿using Kysect.PowerShellRunner.Abstractions.Accessors;
 using Kysect.PowerShellRunner.Abstractions.Accessors.Results;
 using Kysect.PowerShellRunner.Abstractions.Queries;
+using Kysect.PowerShellRunner.Core.Accessors.Models;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Management.Automation;
 
-namespace Kysect.PowerShellRunner.FrameworkImplementation;
+namespace Kysect.PowerShellRunner.Core.Accessors;
 
 public class PowerShellAccessor : IPowerShellAccessor
 {

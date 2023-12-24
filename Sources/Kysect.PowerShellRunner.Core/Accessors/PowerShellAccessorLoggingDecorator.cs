@@ -8,7 +8,7 @@ using Kysect.PowerShellRunner.Core.Tools;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 
-namespace Kysect.PowerShellRunner.Core.Decorators;
+namespace Kysect.PowerShellRunner.Core.Accessors;
 
 public class PowerShellAccessorLoggingDecorator : IPowerShellAccessor
 {

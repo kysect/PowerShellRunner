@@ -2,7 +2,7 @@
 using Kysect.PowerShellRunner.Abstractions.Accessors.Results;
 using Kysect.PowerShellRunner.Abstractions.Queries;
 
-namespace Kysect.PowerShellRunner.Core.Decorators;
+namespace Kysect.PowerShellRunner.Core.Accessors;
 
 public class PowerShellResettableAccessor : IPowerShellAccessor
 {
