@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 
-namespace Kysect.PowerShellRunner.FrameworkImplementation;
+namespace Kysect.PowerShellRunner.Core.Accessors.Models;
 
 internal class PowerShellObject : IPowerShellObject
 {

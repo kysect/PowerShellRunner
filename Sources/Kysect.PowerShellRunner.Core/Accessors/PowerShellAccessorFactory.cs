@@ -1,6 +1,6 @@
 ﻿using Kysect.PowerShellRunner.Abstractions.Accessors;
 
-namespace Kysect.PowerShellRunner.FrameworkImplementation;
+namespace Kysect.PowerShellRunner.Core.Accessors;
 
 public class PowerShellAccessorFactory : IPowerShellAccessorFactory
 {

@@ -1,9 +1,9 @@
 ﻿using Kysect.CommonLib.BaseTypes.Extensions;
 using Kysect.PowerShellRunner.Abstractions.Accessors;
-using Kysect.PowerShellRunner.Core.Decorators.Initialization;
+using Kysect.PowerShellRunner.Core.Accessors.Initialization;
 using Microsoft.Extensions.Logging;
 
-namespace Kysect.PowerShellRunner.Core.Decorators;
+namespace Kysect.PowerShellRunner.Core.Accessors;
 
 #pragma warning disable CA1001
 public class PowerShellAccessorDecoratorBuilder

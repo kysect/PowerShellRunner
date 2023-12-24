@@ -1,6 +1,6 @@
 ﻿using Kysect.PowerShellRunner.Abstractions.Accessors;
 
-namespace Kysect.PowerShellRunner.Core.Decorators.Initialization;
+namespace Kysect.PowerShellRunner.Core.Accessors.Initialization;
 
 public interface IPowerShellAccessorInitializer
 {
