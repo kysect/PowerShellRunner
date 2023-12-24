@@ -1,5 +1,5 @@
 ﻿using Kysect.CommonLib.BaseTypes.Extensions;
-using Kysect.CommonLib.DependencyInjection;
+using Kysect.CommonLib.DependencyInjection.Logging;
 using Kysect.CommonLib.ProgressTracking;
 using Kysect.PowerShellRunner.CodeGeneration.Common;
 using Kysect.PowerShellRunner.CodeGeneration.Compilation;
@@ -13,7 +13,7 @@ namespace Kysect.PowerShellRunner.Tests.CodeGeneration.Tools;
 
 public class SyntaxTreeTestFacade
 {
-    private readonly SolutionCompilationContextFactory _solutionCompilationContextFactory = new(new EmptyProgressTrackerFactory(), PredefinedLogger.CreateConsoleLogger());
+    private readonly SolutionCompilationContextFactory _solutionCompilationContextFactory = new(new EmptyProgressTrackerFactory(), DefaultLoggerConfiguration.CreateConsoleLogger());
 
     public SyntaxTree SyntaxTree { get; }
     public CSharpCompilation Compilation { get; }
@@ -81,8 +81,8 @@ public class SyntaxTreeTestFacade
         SolutionCompilationContext compilationContext = CreateCompilationContext();
         var typeInheritancesSearcher = SolutionCompilationTypeInheritancesSearcher.CreateInstance(compilationContext.Items);
 
-        CmdletBaseSyntaxInfoParser baseSyntaxParser = new CmdletBaseSyntaxInfoParser(PredefinedLogger.CreateConsoleLogger());
-        CmdletBaseSemanticInfoParser baseSemanticInfoParser = new CmdletBaseSemanticInfoParser(PredefinedLogger.CreateConsoleLogger());
+        CmdletBaseSyntaxInfoParser baseSyntaxParser = new CmdletBaseSyntaxInfoParser(DefaultLoggerConfiguration.CreateConsoleLogger());
+        CmdletBaseSemanticInfoParser baseSemanticInfoParser = new CmdletBaseSemanticInfoParser(DefaultLoggerConfiguration.CreateConsoleLogger());
         CmdletBaseSyntaxInfo syntaxParseResult = baseSyntaxParser.ExtractSyntaxInfo(CreateCompilationContextItem(cmdletName));
         CmdletBaseSemanticInfo cmdletBaseSemanticInfo = baseSemanticInfoParser.Parse(syntaxParseResult, typeInheritancesSearcher);
         return cmdletBaseSemanticInfo;

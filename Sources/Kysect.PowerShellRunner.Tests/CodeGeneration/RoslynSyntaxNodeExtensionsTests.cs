@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Kysect.CommonLib.DependencyInjection;
+using Kysect.CommonLib.DependencyInjection.Logging;
 using Kysect.CommonLib.ProgressTracking;
 using Kysect.PowerShellRunner.CodeGeneration.Common;
 using Kysect.PowerShellRunner.CodeGeneration.Compilation;
@@ -13,7 +13,7 @@ namespace Kysect.PowerShellRunner.Tests.CodeGeneration;
 
 public class RoslynSyntaxNodeExtensionsTests
 {
-    private readonly SolutionCompilationContextFactory _solutionCompilationContextFactory = new(new EmptyProgressTrackerFactory(), PredefinedLogger.CreateConsoleLogger());
+    private readonly SolutionCompilationContextFactory _solutionCompilationContextFactory = new(new EmptyProgressTrackerFactory(), DefaultLoggerConfiguration.CreateConsoleLogger());
 
     [Test]
     public void GetInvocationExpressionByName_ReturnExpectedResult()

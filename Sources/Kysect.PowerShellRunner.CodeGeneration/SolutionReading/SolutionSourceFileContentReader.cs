@@ -1,6 +1,6 @@
 ﻿using Kysect.CommonLib.ProgressTracking;
-using Kysect.DotnetSlnParser;
 using Kysect.DotnetSlnParser.Models;
+using Kysect.DotnetSlnParser.Parsers;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.IO.Abstractions;
@@ -10,7 +10,7 @@ namespace Kysect.PowerShellRunner.CodeGeneration.SolutionReading;
 
 public class SolutionSourceFileContentReader : ISolutionSourceFileContentReader
 {
-    private readonly DotnetSolutionStructureParser _solutionStructureParser;
+    private readonly DotnetSolutionParser _solutionStructureParser;
     private readonly DotnetSolutionSourceFileFinder _sourceFileFinder;
     private readonly IProgressTrackerFactory _progressTrackerFactory;
     private readonly ISolutionProjectFilter _projectFilter;
@@ -19,7 +19,7 @@ public class SolutionSourceFileContentReader : ISolutionSourceFileContentReader
     private readonly ILogger _logger;
 
     public SolutionSourceFileContentReader(
-        DotnetSolutionStructureParser solutionStructureParser,
+        DotnetSolutionParser solutionStructureParser,
         DotnetSolutionSourceFileFinder sourceFileFinder,
         IProgressTrackerFactory progressTrackerFactory,
         ISolutionProjectFilter projectFilter,

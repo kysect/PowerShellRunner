@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Kysect.CommonLib.DependencyInjection;
+using Kysect.CommonLib.DependencyInjection.Logging;
 using Kysect.CommonLib.ProgressTracking;
 using Kysect.PowerShellRunner.CodeGeneration.Compilation;
 using Kysect.PowerShellRunner.Tests.CodeGeneration.Tools;
@@ -11,7 +11,7 @@ namespace Kysect.PowerShellRunner.Tests.CodeGeneration;
 
 public class SolutionCompilationContextFactoryTests
 {
-    private readonly SolutionCompilationContextFactory _solutionCompilationContextFactory = new(new EmptyProgressTrackerFactory(), PredefinedLogger.CreateConsoleLogger());
+    private readonly SolutionCompilationContextFactory _solutionCompilationContextFactory = new(new EmptyProgressTrackerFactory(), DefaultLoggerConfiguration.CreateConsoleLogger());
 
     [Test]
     [TestCase("public class A { }")]

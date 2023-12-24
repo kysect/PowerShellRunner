@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Kysect.CommonLib.DependencyInjection;
+using Kysect.CommonLib.DependencyInjection.Logging;
 using Kysect.PowerShellRunner.CodeGeneration.Compilation;
 using Kysect.PowerShellRunner.CodeGeneration.SemanticParsing;
 using Kysect.PowerShellRunner.CodeGeneration.UsedModelSearching;
@@ -41,7 +41,7 @@ public class CmdletUsedModelSearcherTests
                     """;
 
         var simpleModelSemanticDescriptorFactory = new RoslynSimpleModelSemanticDescriptorFactory(new DummyRoslynSimpleModelBaseTypeFilter(), new DummyRoslynSimpleModelPropertyFilter());
-        var cmdletUsedModelSearcher = new CmdletUsedModelSearcher(PredefinedLogger.CreateConsoleLogger(), simpleModelSemanticDescriptorFactory);
+        var cmdletUsedModelSearcher = new CmdletUsedModelSearcher(DefaultLoggerConfiguration.CreateConsoleLogger(), simpleModelSemanticDescriptorFactory);
 
         var syntaxTreeTestFacade = SyntaxTreeTestFacade.Create(input);
         SolutionCompilationContext compilationContext = syntaxTreeTestFacade.CreateCompilationContext();
@@ -83,7 +83,7 @@ public class CmdletUsedModelSearcherTests
                     """;
 
         var simpleModelSemanticDescriptorFactory = new RoslynSimpleModelSemanticDescriptorFactory(new DummyRoslynSimpleModelBaseTypeFilter(), new DummyRoslynSimpleModelPropertyFilter());
-        var cmdletUsedModelSearcher = new CmdletUsedModelSearcher(PredefinedLogger.CreateConsoleLogger(), simpleModelSemanticDescriptorFactory);
+        var cmdletUsedModelSearcher = new CmdletUsedModelSearcher(DefaultLoggerConfiguration.CreateConsoleLogger(), simpleModelSemanticDescriptorFactory);
 
         var syntaxTreeTestFacade = SyntaxTreeTestFacade.Create(input);
         SolutionCompilationContext compilationContext = syntaxTreeTestFacade.CreateCompilationContext();
