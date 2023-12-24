@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Kysect.PowerShellRunner.Abstractions.Objects;
-using Kysect.PowerShellRunner.Core.Mapping;
+using Kysect.PowerShellRunner.Mapping;
 using Kysect.PowerShellRunner.Tests.Mocks;
 using NUnit.Framework;
 

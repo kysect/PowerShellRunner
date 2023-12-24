@@ -38,7 +38,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Kysect.PowerShellRunner.Abstractions\Kysect.PowerShellRunner.Abstractions.csproj" />
     <ProjectReference Include="..\Kysect.PowerShellRunner.CodeGeneration\Kysect.PowerShellRunner.CodeGeneration.csproj" />
-    <ProjectReference Include="..\Kysect.PowerShellRunner.Core\Kysect.PowerShellRunner.Core.csproj" />
+    <ProjectReference Include="..\Kysect.PowerShellRunner\Kysect.PowerShellRunner.csproj" />
   </ItemGroup>
 
 </Project>
