@@ -1,5 +1,5 @@
 ﻿using Kysect.CommonLib.ProgressTracking;
-using Kysect.DotnetSlnParser;
+using Kysect.DotnetSlnParser.Parsers;
 using Kysect.PowerShellRunner.CodeGeneration.Compilation;
 using Kysect.PowerShellRunner.CodeGeneration.SemanticParsing;
 using Kysect.PowerShellRunner.CodeGeneration.SolutionReading;
@@ -13,11 +13,13 @@ namespace Kysect.PowerShellRunner.CodeGeneration.SchemaGenerating;
 public class PowerShellSemanticSchemaGeneratorFactory
 {
     private readonly IProgressTrackerFactory _progressTrackerFactory;
+    private readonly IFileSystem _fileSystem;
     private readonly ILogger _logger;
 
-    public PowerShellSemanticSchemaGeneratorFactory(IProgressTrackerFactory progressTrackerFactory, ILogger logger)
+    public PowerShellSemanticSchemaGeneratorFactory(IProgressTrackerFactory progressTrackerFactory, IFileSystem fileSystem, ILogger logger)
     {
         _progressTrackerFactory = progressTrackerFactory;
+        _fileSystem = fileSystem;
         _logger = logger;
     }
 
@@ -34,10 +36,9 @@ public class PowerShellSemanticSchemaGeneratorFactory
     {
         var modelSemanticDescriptorFactory = new RoslynSimpleModelSemanticDescriptorFactory(simpleModelBaseTypeFilter, simpleModelPropertyFilter);
 
-        var fileSystem = new FileSystem();
-        var solutionStructureParser = new DotnetSolutionStructureParser(fileSystem, _logger);
-        var sourceFileFinder = new DotnetSolutionSourceFileFinder(fileSystem, _logger);
-        var sourceFileContentReader = new SolutionSourceFileContentReader(solutionStructureParser, sourceFileFinder, _progressTrackerFactory, solutionProjectFilter, _logger, solutionSourceFileFilter, fileSystem);
+        var solutionStructureParser = new DotnetSolutionParser(_fileSystem, _logger);
+        var sourceFileFinder = new DotnetSolutionSourceFileFinder(_fileSystem, _logger);
+        var sourceFileContentReader = new SolutionSourceFileContentReader(solutionStructureParser, sourceFileFinder, _progressTrackerFactory, solutionProjectFilter, _logger, solutionSourceFileFilter, _fileSystem);
 
         return new PowerShellSemanticSchemaGenerator<TSyntax, TSemantic>(
             sourceFileContentReader,

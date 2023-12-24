@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Kysect.CommonLib.DependencyInjection;
+using Kysect.CommonLib.DependencyInjection.Logging;
 using Kysect.PowerShellRunner.CodeGeneration.Compilation;
 using Kysect.PowerShellRunner.CodeGeneration.SemanticParsing;
 using Kysect.PowerShellRunner.CodeGeneration.SyntaxParsing;
@@ -11,7 +11,7 @@ namespace Kysect.PowerShellRunner.Tests.CodeGeneration;
 public class CmdletAttributeValueParserTests
 {
     private readonly CmdletAttributeSyntaxParser _attributeSyntaxParser = new CmdletAttributeSyntaxParser();
-    private readonly CmdletAttributeValueParser _attributeValueParser = new CmdletAttributeValueParser(PredefinedLogger.CreateConsoleLogger());
+    private readonly CmdletAttributeValueParser _attributeValueParser = new CmdletAttributeValueParser(DefaultLoggerConfiguration.CreateConsoleLogger());
 
     [Test]
     public void ParseCmdletAttribute_ReturnExpectedValue()

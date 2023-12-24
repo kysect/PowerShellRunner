@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Kysect.CommonLib.DependencyInjection;
+using Kysect.CommonLib.DependencyInjection.Logging;
 using Kysect.PowerShellRunner.CodeGeneration.Common;
 using Kysect.PowerShellRunner.CodeGeneration.Compilation;
 using Kysect.PowerShellRunner.CodeGeneration.SemanticParsing;
@@ -18,7 +18,7 @@ public class CmdletWriteObjectMethodParserTests
 
     public CmdletWriteObjectMethodParserTests()
     {
-        ILogger logger = PredefinedLogger.CreateConsoleLogger();
+        ILogger logger = DefaultLoggerConfiguration.CreateConsoleLogger();
         _cmdletWriteObjectMethodParser = new CmdletWriteObjectMethodParser(logger);
     }
 

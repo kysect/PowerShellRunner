@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Kysect.CommonLib.DependencyInjection;
+using Kysect.CommonLib.DependencyInjection.Logging;
 using Kysect.CommonLib.ProgressTracking;
 using Kysect.PowerShellRunner.CodeGeneration.Compilation;
 using Kysect.PowerShellRunner.CodeGeneration.SyntaxParsing;
@@ -13,11 +13,11 @@ namespace Kysect.PowerShellRunner.Tests.CodeGeneration;
 public class CmdletBaseSyntaxInfoParserTests
 {
     private readonly CmdletBaseSyntaxInfoParser _baseSyntaxInfoParser;
-    private readonly SolutionCompilationContextFactory _solutionCompilationContextFactory = new(new EmptyProgressTrackerFactory(), PredefinedLogger.CreateConsoleLogger());
+    private readonly SolutionCompilationContextFactory _solutionCompilationContextFactory = new(new EmptyProgressTrackerFactory(), DefaultLoggerConfiguration.CreateConsoleLogger());
 
     public CmdletBaseSyntaxInfoParserTests()
     {
-        _baseSyntaxInfoParser = new CmdletBaseSyntaxInfoParser(PredefinedLogger.CreateConsoleLogger());
+        _baseSyntaxInfoParser = new CmdletBaseSyntaxInfoParser(DefaultLoggerConfiguration.CreateConsoleLogger());
     }
 
     [Test]

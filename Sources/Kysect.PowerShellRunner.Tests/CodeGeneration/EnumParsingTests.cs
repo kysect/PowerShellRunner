@@ -1,4 +1,5 @@
-﻿using Kysect.CommonLib.DependencyInjection;
+﻿using FluentAssertions;
+using Kysect.CommonLib.DependencyInjection.Logging;
 using Kysect.PowerShellRunner.CodeGeneration.UsedModelSearching;
 using Kysect.PowerShellRunner.Tests.CodeGeneration.Tools;
 using Microsoft.CodeAnalysis;
@@ -10,7 +11,7 @@ namespace Kysect.PowerShellRunner.Tests.CodeGeneration;
 
 public class EnumParsingTests
 {
-    private readonly EnumDeclarationParser _parser = new(PredefinedLogger.CreateConsoleLogger());
+    private readonly EnumDeclarationParser _parser = new(DefaultLoggerConfiguration.CreateConsoleLogger());
 
     [Test]
     public void ParseEnum_ShouldReturnAllMembers()
@@ -26,7 +27,7 @@ public class EnumParsingTests
 
         ModelEnumTypeDescriptor modelEnumTypeDescriptor = _parser.ParseEnum(enumDeclarationSyntax);
 
-        Assert.NotNull(modelEnumTypeDescriptor);
+        modelEnumTypeDescriptor.Should().NotBeNull();
         Assert.That(modelEnumTypeDescriptor.Values.Count, Is.EqualTo(2));
         Assert.That(modelEnumTypeDescriptor.Values.ElementAt(0).Identifier, Is.EqualTo("Value2"));
         Assert.That(modelEnumTypeDescriptor.Values.ElementAt(0).Value, Is.EqualTo(2));
