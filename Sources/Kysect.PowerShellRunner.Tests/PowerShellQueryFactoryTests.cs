@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
 using Kysect.PowerShellRunner.Abstractions.Queries;
 using Kysect.PowerShellRunner.Abstractions.Variables;
-using Kysect.PowerShellRunner.Core.CustomCmdlets;
-using Kysect.PowerShellRunner.Core.Extensions;
-using Kysect.PowerShellRunner.Core.QueryBuilding;
+using Kysect.PowerShellRunner.CustomCmdlets;
+using Kysect.PowerShellRunner.Extensions;
+using Kysect.PowerShellRunner.QueryBuilding;
 using NUnit.Framework;
 
 namespace Kysect.PowerShellRunner.Tests;

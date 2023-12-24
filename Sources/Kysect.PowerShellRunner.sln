@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kysect.PowerShellRunner.Abs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kysect.PowerShellRunner.Tests", "Kysect.PowerShellRunner.Tests\Kysect.PowerShellRunner.Tests.csproj", "{707E300A-3802-44F4-B64E-56A7DC2E8557}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kysect.PowerShellRunner.Core", "Kysect.PowerShellRunner.Core\Kysect.PowerShellRunner.Core.csproj", "{C83F1965-69EF-47E6-AE95-807468393116}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kysect.PowerShellRunner", "Kysect.PowerShellRunner\Kysect.PowerShellRunner.csproj", "{C83F1965-69EF-47E6-AE95-807468393116}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kysect.PowerShellRunner.CodeGeneration", "Kysect.PowerShellRunner.CodeGeneration\Kysect.PowerShellRunner.CodeGeneration.csproj", "{427C6CA2-F555-40E5-9E8D-C2EAE16A07D5}"
 EndProject
