@@ -18,5 +18,6 @@
     <PackageVersion Include="Kysect.DotnetSlnParser" Version="0.1.6" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
     <PackageVersion Include="PowerShellStandard.Library" Version="5.1.1" />
+    <PackageVersion Include="MinVer" Version="5.0.0" />
   </ItemGroup>
 </Project>
