@@ -1,0 +1,6 @@
+# configuration file for dotnet-releaser
+[msbuild]
+project = "Kysect.PowerShellRunner.sln"
+[github]
+user = "kysect"
+repo = "PowerShellRunner"
