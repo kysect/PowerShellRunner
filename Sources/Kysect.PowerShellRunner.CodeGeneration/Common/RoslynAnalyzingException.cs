@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Kysect.PowerShellRunner.CodeGeneration.Common;
+﻿namespace Kysect.PowerShellRunner.CodeGeneration.Common;
 
 public class RoslynAnalyzingException : Exception
 {

@@ -1,5 +1,4 @@
 ﻿using Kysect.PowerShellRunner.Abstractions.Objects;
-using System.Collections.Generic;
 
 namespace Kysect.PowerShellRunner.Abstractions.Accessors.Results;
 

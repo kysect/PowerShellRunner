@@ -3,8 +3,6 @@ using Kysect.PowerShellRunner.CodeGeneration.Common;
 using Kysect.PowerShellRunner.CodeGeneration.Compilation;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.SyntaxParsing;
 

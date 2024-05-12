@@ -3,7 +3,6 @@ using Kysect.PowerShellRunner.Abstractions.Accessors.Results;
 using Kysect.PowerShellRunner.Abstractions.Queries;
 using Kysect.PowerShellRunner.Accessors.Models;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Management.Automation;
 
 namespace Kysect.PowerShellRunner.Accessors;

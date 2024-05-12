@@ -6,9 +6,7 @@ using Kysect.PowerShellRunner.CodeGeneration.Compilation;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.SemanticParsing;
 

@@ -8,8 +8,6 @@ using Kysect.PowerShellRunner.CodeGeneration.SyntaxParsing;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.SemanticParsing;
 

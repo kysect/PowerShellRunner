@@ -1,22 +1,21 @@
 <Project>
   <PropertyGroup>
-    <Authors>Kysect</Authors>
-    <Company>Kysect</Company>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/Kysect/PowerShellRunner</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Kysect/PowerShellRunner</PackageProjectUrl>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
   </PropertyGroup>
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-
     <UseArtifactsOutput>true</UseArtifactsOutput>
-    <DebugType>portable</DebugType>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Kysect.Editorconfig">
+    <None Include="$(MSBuildThisFileDirectory)../Readme.md" Pack="true" PackagePath="/Readme.md" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Kysect.SolutionDefaults">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

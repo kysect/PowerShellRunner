@@ -3,7 +3,6 @@ using Kysect.PowerShellRunner.Abstractions.Accessors;
 using Kysect.PowerShellRunner.Abstractions.Objects;
 using Kysect.PowerShellRunner.Abstractions.Queries;
 using Kysect.PowerShellRunner.Abstractions.Variables;
-using System.Collections.Generic;
 
 namespace Kysect.PowerShellRunner.Executions;
 

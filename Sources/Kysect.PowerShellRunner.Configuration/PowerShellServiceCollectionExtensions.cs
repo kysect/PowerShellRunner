@@ -3,7 +3,6 @@ using Kysect.CommonLib.DependencyInjection.Logging;
 using Kysect.PowerShellRunner.Abstractions.Accessors;
 using Kysect.PowerShellRunner.Accessors;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace Kysect.PowerShellRunner.Configuration;
 

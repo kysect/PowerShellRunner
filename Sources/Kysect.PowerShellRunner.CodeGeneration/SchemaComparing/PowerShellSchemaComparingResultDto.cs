@@ -1,5 +1,4 @@
 ﻿using Kysect.PowerShellRunner.CodeGeneration.SchemaGenerating;
-using System.Collections.Generic;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.SchemaComparing;
 

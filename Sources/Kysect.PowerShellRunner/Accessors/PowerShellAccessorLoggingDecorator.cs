@@ -6,7 +6,6 @@ using Kysect.PowerShellRunner.Abstractions.Objects;
 using Kysect.PowerShellRunner.Abstractions.Queries;
 using Kysect.PowerShellRunner.Extensions;
 using Microsoft.Extensions.Logging;
-using System.Linq;
 
 namespace Kysect.PowerShellRunner.Accessors;
 

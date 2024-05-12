@@ -1,8 +1,6 @@
 ﻿using Kysect.CommonLib.BaseTypes.Extensions;
 using Kysect.PowerShellRunner.CodeGeneration.Common;
 using Microsoft.CodeAnalysis;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.Compilation;
 

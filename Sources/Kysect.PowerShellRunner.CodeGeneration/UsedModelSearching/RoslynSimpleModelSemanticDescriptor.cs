@@ -1,5 +1,4 @@
 ﻿using Kysect.PowerShellRunner.CodeGeneration.Common.Semantic;
-using System.Collections.Generic;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.UsedModelSearching;
 

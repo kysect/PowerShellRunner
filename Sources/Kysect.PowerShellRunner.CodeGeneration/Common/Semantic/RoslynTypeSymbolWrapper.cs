@@ -1,7 +1,5 @@
 ﻿using Kysect.CommonLib.BaseTypes.Extensions;
 using Microsoft.CodeAnalysis;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.Common.Semantic;

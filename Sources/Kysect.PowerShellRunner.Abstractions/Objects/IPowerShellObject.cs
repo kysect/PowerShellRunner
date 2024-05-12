@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Kysect.PowerShellRunner.Abstractions.Objects;
+﻿namespace Kysect.PowerShellRunner.Abstractions.Objects;
 
 public interface IPowerShellObject
 {

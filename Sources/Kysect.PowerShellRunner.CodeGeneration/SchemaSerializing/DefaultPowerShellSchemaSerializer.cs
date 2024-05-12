@@ -3,8 +3,6 @@ using Kysect.PowerShellRunner.CodeGeneration.Common.Semantic;
 using Kysect.PowerShellRunner.CodeGeneration.SchemaGenerating;
 using Kysect.PowerShellRunner.CodeGeneration.SemanticParsing;
 using Kysect.PowerShellRunner.CodeGeneration.UsedModelSearching;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.SchemaSerializing;
 

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Kysect.PowerShellRunner.CodeGeneration.Parsing.Enums;
+﻿namespace Kysect.PowerShellRunner.CodeGeneration.Parsing.Enums;
 
 public class EnumDeclarationSyntaxParseResult
 {

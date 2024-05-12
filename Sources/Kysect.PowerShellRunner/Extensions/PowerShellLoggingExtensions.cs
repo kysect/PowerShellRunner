@@ -2,7 +2,6 @@
 using Kysect.CommonLib.Logging;
 using Kysect.PowerShellRunner.Abstractions.Objects;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 
 namespace Kysect.PowerShellRunner.Extensions;
 
