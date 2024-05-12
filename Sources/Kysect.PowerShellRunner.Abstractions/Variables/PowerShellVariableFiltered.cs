@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Kysect.PowerShellRunner.Abstractions.Variables;
+﻿namespace Kysect.PowerShellRunner.Abstractions.Variables;
 
 public static class PowerShellVariableFilteredExtensions
 {

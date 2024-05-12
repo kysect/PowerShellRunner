@@ -1,5 +1,4 @@
 ﻿using Kysect.PowerShellRunner.Abstractions.Parameters;
-using System;
 
 namespace Kysect.PowerShellRunner.Abstractions.Variables;
 

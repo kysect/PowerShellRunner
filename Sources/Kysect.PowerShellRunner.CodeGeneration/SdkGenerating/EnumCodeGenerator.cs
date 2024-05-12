@@ -2,7 +2,6 @@
 using Kysect.PowerShellRunner.CodeGeneration.UsedModelSearching;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System.Linq;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.SdkGenerating;

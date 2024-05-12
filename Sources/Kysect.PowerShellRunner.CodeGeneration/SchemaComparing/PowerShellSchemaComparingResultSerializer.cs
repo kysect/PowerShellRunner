@@ -2,8 +2,6 @@
 using Kysect.PowerShellRunner.CodeGeneration.SchemaSerializing;
 using Kysect.PowerShellRunner.CodeGeneration.SemanticParsing;
 using Kysect.PowerShellRunner.CodeGeneration.UsedModelSearching;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.SchemaComparing;
 

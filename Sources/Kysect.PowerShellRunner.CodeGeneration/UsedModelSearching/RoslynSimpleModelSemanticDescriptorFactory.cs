@@ -2,7 +2,6 @@
 using Kysect.PowerShellRunner.CodeGeneration.Common;
 using Kysect.PowerShellRunner.CodeGeneration.Common.Semantic;
 using Microsoft.CodeAnalysis;
-using System.Linq;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.UsedModelSearching;
 

@@ -2,9 +2,6 @@
 using Kysect.PowerShellRunner.CustomCmdlets;
 using Kysect.PowerShellRunner.Executions;
 using Kysect.PowerShellRunner.Extensions;
-using System;
-using System.IO;
-using System.Linq;
 
 namespace Kysect.PowerShellRunner.Tools;
 

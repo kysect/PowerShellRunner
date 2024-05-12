@@ -1,8 +1,6 @@
 ﻿using Kysect.PowerShellRunner.Abstractions.Accessors.Results;
 using Kysect.PowerShellRunner.Abstractions.Objects;
 using Kysect.PowerShellRunner.Tools;
-using System;
-using System.Collections.Generic;
 
 namespace Kysect.PowerShellRunner.Executions;
 

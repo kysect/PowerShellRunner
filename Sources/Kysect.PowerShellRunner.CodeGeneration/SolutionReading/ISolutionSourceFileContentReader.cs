@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Kysect.PowerShellRunner.CodeGeneration.SolutionReading;
+﻿namespace Kysect.PowerShellRunner.CodeGeneration.SolutionReading;
 
 public interface ISolutionSourceFileContentReader
 {

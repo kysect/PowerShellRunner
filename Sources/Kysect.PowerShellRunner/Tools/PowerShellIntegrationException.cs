@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Kysect.PowerShellRunner.Tools;
+﻿namespace Kysect.PowerShellRunner.Tools;
 
 public class PowerShellIntegrationException : Exception
 {

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Kysect.PowerShellRunner.CodeGeneration.SchemaGenerating;
+﻿namespace Kysect.PowerShellRunner.CodeGeneration.SchemaGenerating;
 
 public static class CollectionExtensions
 {

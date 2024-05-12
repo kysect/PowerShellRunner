@@ -2,7 +2,6 @@
 using Kysect.PowerShellRunner.Abstractions.Cmdlets;
 using Kysect.PowerShellRunner.Abstractions.Parameters;
 using Kysect.PowerShellRunner.Abstractions.Variables;
-using System;
 using System.Linq.Expressions;
 using System.Management.Automation;
 

@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace Kysect.PowerShellRunner.Abstractions.Variables;
+﻿namespace Kysect.PowerShellRunner.Abstractions.Variables;
 
 public class PowerShellVariableWithIndex<T> : IPowerShellReferenceable<T>
 {

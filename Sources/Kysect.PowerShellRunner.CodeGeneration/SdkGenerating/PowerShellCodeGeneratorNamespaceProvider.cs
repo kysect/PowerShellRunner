@@ -2,7 +2,6 @@
 using Kysect.PowerShellRunner.Abstractions.Parameters;
 using Kysect.PowerShellRunner.CodeGeneration.SchemaGenerating;
 using Kysect.PowerShellRunner.CodeGeneration.UsedModelSearching;
-using System;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.SdkGenerating;
 

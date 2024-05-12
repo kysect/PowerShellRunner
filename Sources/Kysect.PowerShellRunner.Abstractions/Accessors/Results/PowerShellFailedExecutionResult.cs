@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Kysect.PowerShellRunner.Abstractions.Accessors.Results;
+﻿namespace Kysect.PowerShellRunner.Abstractions.Accessors.Results;
 
 public class PowerShellFailedExecutionResult : IPowerShellExecutionResult
 {

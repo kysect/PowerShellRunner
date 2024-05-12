@@ -1,6 +1,5 @@
 ﻿using Kysect.CommonLib.BaseTypes.Extensions;
 using Microsoft.CodeAnalysis.CSharp;
-using System.Collections.Generic;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.Compilation;
 

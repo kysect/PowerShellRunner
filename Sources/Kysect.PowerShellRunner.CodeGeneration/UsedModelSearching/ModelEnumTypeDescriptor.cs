@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Kysect.PowerShellRunner.CodeGeneration.UsedModelSearching;
+﻿namespace Kysect.PowerShellRunner.CodeGeneration.UsedModelSearching;
 
 public class ModelEnumTypeDescriptor
 {

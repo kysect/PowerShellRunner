@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Kysect.PowerShellRunner.Mapping;
+﻿namespace Kysect.PowerShellRunner.Mapping;
 
 public class PowerShellObjectCustomMapping : IPowerShellObjectCustomMapping
 {

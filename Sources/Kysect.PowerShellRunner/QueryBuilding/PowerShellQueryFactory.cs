@@ -4,9 +4,7 @@ using Kysect.PowerShellRunner.Abstractions.Cmdlets;
 using Kysect.PowerShellRunner.Abstractions.Parameters;
 using Kysect.PowerShellRunner.Abstractions.Queries;
 using Kysect.PowerShellRunner.Abstractions.Variables;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Management.Automation;
 using System.Reflection;
 

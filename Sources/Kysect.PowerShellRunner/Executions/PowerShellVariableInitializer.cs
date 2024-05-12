@@ -6,8 +6,6 @@ using Kysect.PowerShellRunner.Abstractions.Queries;
 using Kysect.PowerShellRunner.Abstractions.Variables;
 using Kysect.PowerShellRunner.Mapping;
 using Kysect.PowerShellRunner.QueryBuilding;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Kysect.PowerShellRunner.Executions;
 

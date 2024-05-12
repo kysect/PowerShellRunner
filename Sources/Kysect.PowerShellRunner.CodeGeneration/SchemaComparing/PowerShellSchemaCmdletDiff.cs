@@ -1,6 +1,5 @@
 ﻿using Kysect.PowerShellRunner.CodeGeneration.Common.Semantic;
 using Kysect.PowerShellRunner.CodeGeneration.SemanticParsing;
-using System.Collections.Generic;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.SchemaComparing;
 
