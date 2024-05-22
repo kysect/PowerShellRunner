@@ -4,10 +4,11 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Kysect.CommonLib" />
-    <PackageReference Include="Kysect.DotnetSlnParser" />
+    <PackageReference Include="Kysect.DotnetProjectSystem" />
     <PackageReference Include="Microsoft.Bcl.HashCode" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
     <PackageReference Include="PowerShellStandard.Library" />
+    <PackageReference Include="TestableIO.System.IO.Abstractions.Wrappers" />
   </ItemGroup>
 
   <ItemGroup>

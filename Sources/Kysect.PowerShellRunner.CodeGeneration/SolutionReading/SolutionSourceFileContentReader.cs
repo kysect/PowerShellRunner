@@ -1,6 +1,6 @@
 ﻿using Kysect.CommonLib.ProgressTracking;
-using Kysect.DotnetSlnParser.Models;
-using Kysect.DotnetSlnParser.Parsers;
+using Kysect.DotnetProjectSystem.Parsing;
+using Kysect.DotnetProjectSystem.Traversing;
 using Microsoft.Extensions.Logging;
 using System.IO.Abstractions;
 
