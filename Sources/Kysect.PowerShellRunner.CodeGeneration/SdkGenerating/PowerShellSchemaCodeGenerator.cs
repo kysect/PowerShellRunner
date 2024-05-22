@@ -1,9 +1,10 @@
 ﻿using Kysect.CommonLib.BaseTypes.Extensions;
-using Kysect.CommonLib.FileSystem.Extensions;
+using Kysect.CommonLib.FileSystem;
 using Kysect.PowerShellRunner.CodeGeneration.SchemaGenerating;
 using Kysect.PowerShellRunner.CodeGeneration.UsedModelSearching;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.IO.Abstractions;
 
 namespace Kysect.PowerShellRunner.CodeGeneration.SdkGenerating;
 
@@ -12,12 +13,14 @@ public class PowerShellSchemaCodeGenerator
     private readonly string _outputPath;
     private readonly string _namespaceName;
     private readonly IPowerShellCodeGeneratorNamespaceProvider _namespaceProvider;
+    private readonly FileSystem _fileSystem;
 
     public PowerShellSchemaCodeGenerator(string outputPath, string namespaceName, IPowerShellCodeGeneratorNamespaceProvider namespaceProvider)
     {
         _outputPath = outputPath;
         _namespaceName = namespaceName;
         _namespaceProvider = namespaceProvider;
+        _fileSystem = new FileSystem();
     }
 
     public void GenerateSdkCode(PowerShellSchemaDto powerShellSchema)
@@ -54,7 +57,7 @@ public class PowerShellSchemaCodeGenerator
 
     private void WriteToCsFile(string directoryPath, string typeName, MemberDeclarationSyntax declarationSyntax, string[] usingList)
     {
-        DirectoryExtensions.EnsureFileExists(directoryPath);
+        _fileSystem.EnsureDirectoryExists(directoryPath);
         string fullPath = Path.Combine(directoryPath, $"{typeName}.g.cs");
         string content = CodeGenerationNamespaceWrapper.Wrap(declarationSyntax, _namespaceName, usingList).NormalizeWhitespace().ToString();
 

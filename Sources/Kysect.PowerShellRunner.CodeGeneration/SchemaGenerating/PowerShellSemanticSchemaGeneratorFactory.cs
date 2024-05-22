@@ -1,5 +1,6 @@
 ﻿using Kysect.CommonLib.ProgressTracking;
-using Kysect.DotnetSlnParser.Parsers;
+using Kysect.DotnetProjectSystem.Parsing;
+using Kysect.DotnetProjectSystem.Traversing;
 using Kysect.PowerShellRunner.CodeGeneration.Compilation;
 using Kysect.PowerShellRunner.CodeGeneration.SemanticParsing;
 using Kysect.PowerShellRunner.CodeGeneration.SolutionReading;
