@@ -20,8 +20,8 @@ public class PowerShellAccessorCmdletExecutionContext<T> where T : notnull
         _cmdlet = cmdlet;
         _accessor = accessor;
 
-        _morphisms = new List<Func<PowerShellQuery, PowerShellQuery>>();
         _powerShellObjectMapper = PowerShellObjectMapper.Instance;
+        _morphisms = new List<Func<PowerShellQuery, PowerShellQuery>>();
     }
 
     public PowerShellAccessorCmdletExecutionContext<T> Continue(Func<PowerShellQuery, PowerShellQuery> morphism)
@@ -42,9 +42,7 @@ public class PowerShellAccessorCmdletExecutionContext<T> where T : notnull
     public PowerShellVariable<T> ExecuteAndSetTo(string variableName)
     {
         var powerShellVariable = new PowerShellVariable(variableName);
-
         PowerShellQuery powerShellQuery = BuildQuery();
-
         return new PowerShellVariableInitializer(_accessor, powerShellVariable, _powerShellObjectMapper).With<T>(powerShellQuery);
     }
 
@@ -68,8 +66,8 @@ public class PowerShellAccessorCmdletExecutionContext
         _cmdlet = cmdlet;
         _accessor = accessor;
 
-        _morphisms = new List<Func<PowerShellQuery, PowerShellQuery>>();
         _powerShellObjectMapper = PowerShellObjectMapper.Instance;
+        _morphisms = new List<Func<PowerShellQuery, PowerShellQuery>>();
     }
 
     public PowerShellAccessorCmdletExecutionContext Continue(Func<PowerShellQuery, PowerShellQuery> morphism)

@@ -1,7 +1,9 @@
 ﻿using Kysect.CommonLib.BaseTypes.Extensions;
 using Kysect.CommonLib.DependencyInjection.Logging;
 using Kysect.PowerShellRunner.Abstractions.Accessors;
+using Kysect.PowerShellRunner.Abstractions.Cmdlets;
 using Kysect.PowerShellRunner.Accessors;
+using Kysect.PowerShellRunner.Cmdlets;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Kysect.PowerShellRunner.Configuration;
@@ -27,6 +29,11 @@ public static class PowerShellServiceCollectionExtensions
     public static IServiceCollection AddPowerShellAccessor(this IServiceCollection serviceCollection)
     {
         return serviceCollection.AddSingleton(GetPowerShellAccessor);
+    }
+
+    public static IServiceCollection AddPowerShellCmdletExecutor(this IServiceCollection serviceCollection)
+    {
+        return serviceCollection.AddSingleton<IPowerShellCmdletExecutor, PowerShellCmdletExecutor>();
     }
 
     private static IPowerShellAccessor GetPowerShellAccessor(IServiceProvider serviceProvider)

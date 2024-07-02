@@ -1,6 +1,7 @@
 ﻿using Kysect.CommonLib.BaseTypes.Extensions;
 using Kysect.CommonLib.Reflection;
 using Kysect.CommonLib.Reflection.TypeCache;
+using Kysect.PowerShellRunner.Abstractions.Cmdlets;
 using Kysect.PowerShellRunner.Abstractions.Objects;
 using Kysect.PowerShellRunner.Tools;
 using System.Reflection;
@@ -8,7 +9,7 @@ using System.Text.Json;
 
 namespace Kysect.PowerShellRunner.Mapping;
 
-public class PowerShellObjectMapper
+public class PowerShellObjectMapper : IPowerShellObjectMapper
 {
     private readonly PowerShellObjectMappingConfiguration _configuration;
     private readonly JsonSerializerOptions _serializerOptions;

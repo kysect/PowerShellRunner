@@ -4,7 +4,6 @@ using Kysect.PowerShellRunner.Abstractions.Cmdlets;
 using Kysect.PowerShellRunner.Abstractions.Objects;
 using Kysect.PowerShellRunner.Abstractions.Queries;
 using Kysect.PowerShellRunner.Abstractions.Variables;
-using Kysect.PowerShellRunner.Mapping;
 using Kysect.PowerShellRunner.QueryBuilding;
 
 namespace Kysect.PowerShellRunner.Executions;
@@ -13,9 +12,9 @@ public class PowerShellVariableInitializer
 {
     private readonly IPowerShellAccessor _accessor;
     private readonly PowerShellVariable _variable;
-    private readonly PowerShellObjectMapper _powerShellObjectMapper;
+    private readonly IPowerShellObjectMapper _powerShellObjectMapper;
 
-    public PowerShellVariableInitializer(IPowerShellAccessor accessor, PowerShellVariable variable, PowerShellObjectMapper powerShellObjectMapper)
+    public PowerShellVariableInitializer(IPowerShellAccessor accessor, PowerShellVariable variable, IPowerShellObjectMapper powerShellObjectMapper)
     {
         _accessor = accessor.ThrowIfNull();
         _variable = variable.ThrowIfNull();
