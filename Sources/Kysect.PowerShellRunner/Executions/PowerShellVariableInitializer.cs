@@ -13,11 +13,13 @@ public class PowerShellVariableInitializer
 {
     private readonly IPowerShellAccessor _accessor;
     private readonly PowerShellVariable _variable;
+    private readonly PowerShellObjectMapper _powerShellObjectMapper;
 
-    public PowerShellVariableInitializer(IPowerShellAccessor accessor, PowerShellVariable variable)
+    public PowerShellVariableInitializer(IPowerShellAccessor accessor, PowerShellVariable variable, PowerShellObjectMapper powerShellObjectMapper)
     {
         _accessor = accessor.ThrowIfNull();
         _variable = variable.ThrowIfNull();
+        _powerShellObjectMapper = powerShellObjectMapper.ThrowIfNull();
     }
 
     public PowerShellVariable With(PowerShellQuery query)
@@ -58,7 +60,7 @@ public class PowerShellVariableInitializer
     {
         var mappedValues = powerShellVariable
             .Values
-            .Select(PowerShellObjectMapper.Instance.Map<T>)
+            .Select(_powerShellObjectMapper.Map<T>)
             .ToList();
 
         return new PowerShellVariable<T>(powerShellVariable.Name, mappedValues);

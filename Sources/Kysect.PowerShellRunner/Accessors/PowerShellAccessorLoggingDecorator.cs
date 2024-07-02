@@ -9,57 +9,46 @@ using Microsoft.Extensions.Logging;
 
 namespace Kysect.PowerShellRunner.Accessors;
 
-public class PowerShellAccessorLoggingDecorator : IPowerShellAccessor
+public class PowerShellAccessorLoggingDecorator(IPowerShellAccessor innerImplementation, ILogger logger)
+    : IPowerShellAccessor
 {
-    private readonly IPowerShellAccessor _innerImplementation;
-    private readonly ILogger _logger;
-    private readonly PowerShellQueryFormatter _executionStringFormatter;
-
-    public PowerShellAccessorLoggingDecorator(IPowerShellAccessor innerImplementation, ILogger logger)
-    {
-        _innerImplementation = innerImplementation;
-        _logger = logger;
-
-        _executionStringFormatter = new PowerShellQueryFormatter();
-    }
-
     public IPowerShellExecutionResult Execute(PowerShellQuery query)
     {
         if (query.ContainsSensitiveInfo)
         {
-            _logger.LogDebug("Execute PowerShell command with sensitive data. Query will not be logged.");
+            logger.LogDebug("Execute PowerShell command with sensitive data. Query will not be logged.");
         }
         else
         {
-            string executableQuery = _executionStringFormatter.Format(query);
-            _logger.LogDebug($"Execute PowerShell command: {executableQuery}");
+            string executableQuery = query.Format();
+            logger.LogDebug($"Execute PowerShell command: {executableQuery}");
         }
 
-        IPowerShellExecutionResult result = _innerImplementation.Execute(query);
+        IPowerShellExecutionResult result = innerImplementation.Execute(query);
         switch (result)
         {
             case PowerShellFailedExecutionResult failedPowerShellExecutionResult:
-                _logger.LogError("PS command executed failed.");
+                logger.LogError("PS command executed failed.");
                 if (failedPowerShellExecutionResult.Errors.Any())
                 {
-                    _logger.LogError("Errors:");
+                    logger.LogError("Errors:");
                     foreach (string error in failedPowerShellExecutionResult.Errors)
-                        _logger.LogTabError(1, error);
+                        logger.LogTabError(1, error);
                 }
 
                 if (failedPowerShellExecutionResult.OtherMessages.Any())
                 {
-                    _logger.LogError("Other messages:");
+                    logger.LogError("Other messages:");
                     foreach (string otherMessage in failedPowerShellExecutionResult.OtherMessages)
-                        _logger.LogTabError(1, otherMessage);
+                        logger.LogTabError(1, otherMessage);
                 }
 
                 break;
 
             case PowerShellSuccessExecutionResult successPowerShellExecutionResult:
-                _logger.LogDebug("PS command executed successfully.");
+                logger.LogDebug("PS command executed successfully.");
                 foreach (IPowerShellObject powerShellObject in successPowerShellExecutionResult.Output)
-                    _logger.LogPowerShellObject(powerShellObject);
+                    logger.LogPowerShellObject(powerShellObject);
                 break;
 
             default:
@@ -71,7 +60,7 @@ public class PowerShellAccessorLoggingDecorator : IPowerShellAccessor
 
     protected virtual void Dispose(bool disposing)
     {
-        _innerImplementation.Dispose();
+        innerImplementation.Dispose();
     }
 
     public void Dispose()

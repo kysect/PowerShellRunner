@@ -7,12 +7,6 @@ namespace Kysect.PowerShellRunner.Tests;
 
 public class PowerShellQueryFormatterTests
 {
-    private readonly PowerShellQueryFormatter _sut;
-
-    public PowerShellQueryFormatterTests()
-    {
-        _sut = new PowerShellQueryFormatter();
-    }
 
     [Test]
     public void Format_QueryWithCmdletName_ReturnCorrectQuery()
@@ -20,7 +14,7 @@ public class PowerShellQueryFormatterTests
         string expectedValue = "Get-Value";
         var query = new PowerShellQuery(expectedValue);
 
-        string result = _sut.Format(query);
+        string result = query.Format();
 
         Assert.That(result, Is.EqualTo(expectedValue));
     }
@@ -31,7 +25,7 @@ public class PowerShellQueryFormatterTests
         var expectedValue = "GetValue *> \"Log/file.log\"";
         var query = new PowerShellQuery("GetValue").WithRedirection("Log/file.log");
 
-        string result = _sut.Format(query);
+        string result = query.Format();
 
         Assert.That(result, Is.EqualTo(expectedValue));
     }
@@ -44,7 +38,7 @@ public class PowerShellQueryFormatterTests
         var variable = new PowerShellVariable("$variable_name");
 
         query = query with { ResultVariable = variable };
-        string result = _sut.Format(query);
+        string result = query.Format();
 
         Assert.That(result, Is.EqualTo(expectedValue));
     }
