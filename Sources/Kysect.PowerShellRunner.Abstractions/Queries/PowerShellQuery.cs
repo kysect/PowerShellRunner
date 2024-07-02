@@ -1,5 +1,6 @@
 ﻿using Kysect.CommonLib.BaseTypes.Extensions;
 using Kysect.PowerShellRunner.Abstractions.Variables;
+using System.Text;
 
 namespace Kysect.PowerShellRunner.Abstractions.Queries;
 
@@ -59,5 +60,19 @@ public record struct PowerShellQuery(PowerShellVariable? ResultVariable, string 
     public PowerShellQuery WithRedirection(string path)
     {
         return this with { RedirectionPath = path };
+    }
+
+    public readonly string Format()
+    {
+        var sb = new StringBuilder();
+
+        if (ResultVariable is not null)
+            sb.Append($"{ResultVariable.AsReference()} = ");
+
+        sb.Append(Query);
+        if (!string.IsNullOrEmpty(RedirectionPath))
+            sb.Append($" *> \"{RedirectionPath}\"");
+
+        return sb.ToString();
     }
 }

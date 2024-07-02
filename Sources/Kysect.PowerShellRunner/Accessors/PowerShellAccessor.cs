@@ -7,33 +7,23 @@ using System.Management.Automation;
 
 namespace Kysect.PowerShellRunner.Accessors;
 
-public class PowerShellAccessor : IPowerShellAccessor
+public class PowerShellAccessor(PowerShell powerShellInstance) : IPowerShellAccessor
 {
-    private readonly PowerShell _powerShellInstance;
-    private readonly PowerShellQueryFormatter _executionStringFormatter;
-
-    public PowerShellAccessor(PowerShell powerShellInstance)
-    {
-        _powerShellInstance = powerShellInstance;
-
-        _executionStringFormatter = new PowerShellQueryFormatter();
-    }
-
     public IPowerShellExecutionResult Execute(PowerShellQuery query)
     {
-        string fullCommand = _executionStringFormatter.Format(query);
+        string fullCommand = query.Format();
 
-        lock (_powerShellInstance)
+        lock (powerShellInstance)
         {
-            _powerShellInstance.AddScript(fullCommand);
-            Collection<PSObject> result = _powerShellInstance.Invoke();
+            powerShellInstance.AddScript(fullCommand);
+            Collection<PSObject> result = powerShellInstance.Invoke();
 
-            IPowerShellExecutionResult methodResult = _powerShellInstance.HadErrors
+            IPowerShellExecutionResult methodResult = powerShellInstance.HadErrors
                 ? CreateFailedResult(result)
                 : CreateSuccessResult(result);
 
-            _powerShellInstance.Streams.ClearStreams();
-            _powerShellInstance.Commands.Clear();
+            powerShellInstance.Streams.ClearStreams();
+            powerShellInstance.Commands.Clear();
             return methodResult;
         }
     }
@@ -50,7 +40,7 @@ public class PowerShellAccessor : IPowerShellAccessor
 
     private PowerShellFailedExecutionResult CreateFailedResult(Collection<PSObject> result)
     {
-        var errors = _powerShellInstance.Streams.Error.ToList();
+        var errors = powerShellInstance.Streams.Error.ToList();
         var errorMessages = errors.Select(e => e.ToString()).ToList();
 
         var failedPowerShellExecutionResult = new PowerShellFailedExecutionResult(errorMessages, result
@@ -63,7 +53,7 @@ public class PowerShellAccessor : IPowerShellAccessor
 
     protected virtual void Dispose(bool disposing)
     {
-        _powerShellInstance.Dispose();
+        powerShellInstance.Dispose();
     }
 
     public void Dispose()

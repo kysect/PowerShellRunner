@@ -45,7 +45,7 @@ public class PowerShellAccessorCmdletExecutionContext<T> where T : notnull
 
         PowerShellQuery powerShellQuery = BuildQuery();
 
-        return new PowerShellVariableInitializer(_accessor, powerShellVariable).With<T>(powerShellQuery);
+        return new PowerShellVariableInitializer(_accessor, powerShellVariable, _powerShellObjectMapper).With<T>(powerShellQuery);
     }
 
     private PowerShellQuery BuildQuery()
@@ -61,6 +61,7 @@ public class PowerShellAccessorCmdletExecutionContext
     private readonly IPowerShellAccessor _accessor;
     private readonly IPowerShellCmdlet _cmdlet;
     private readonly List<Func<PowerShellQuery, PowerShellQuery>> _morphisms;
+    private readonly PowerShellObjectMapper _powerShellObjectMapper;
 
     public PowerShellAccessorCmdletExecutionContext(IPowerShellAccessor accessor, IPowerShellCmdlet cmdlet)
     {
@@ -68,6 +69,7 @@ public class PowerShellAccessorCmdletExecutionContext
         _accessor = accessor;
 
         _morphisms = new List<Func<PowerShellQuery, PowerShellQuery>>();
+        _powerShellObjectMapper = PowerShellObjectMapper.Instance;
     }
 
     public PowerShellAccessorCmdletExecutionContext Continue(Func<PowerShellQuery, PowerShellQuery> morphism)
@@ -79,16 +81,14 @@ public class PowerShellAccessorCmdletExecutionContext
     public IReadOnlyCollection<IPowerShellObject> Execute()
     {
         PowerShellQuery powerShellQuery = BuildQuery();
-
-        return _accessor.ExecuteAndGet(powerShellQuery)
-            .ToList();
+        return _accessor.ExecuteAndGet(powerShellQuery);
     }
 
     public PowerShellVariable ExecuteAndSetTo(string variableName)
     {
         var powerShellVariable = new PowerShellVariable(variableName);
         PowerShellQuery powerShellQuery = BuildQuery();
-        return new PowerShellVariableInitializer(_accessor, powerShellVariable).With(powerShellQuery);
+        return new PowerShellVariableInitializer(_accessor, powerShellVariable, _powerShellObjectMapper).With(powerShellQuery);
     }
 
     private PowerShellQuery BuildQuery()
